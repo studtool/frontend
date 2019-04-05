@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	watch: true,
@@ -14,7 +15,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js']
+		extensions: ['.ts', '.tsx', '.js', '.jsx']
 	},
 	module: {
 		rules: [
@@ -57,4 +58,16 @@ module.exports = {
 
 		]
 	},
+	plugins: [
+    	new HtmlWebpackPlugin({
+				template: 'src/index.html',
+				title: 'StudTool',
+    		filename: 'index.html',
+    		// meta: {
+    		// 	viewport: 'width=device-width, initial-scale=1.0, shrink-to-fit=no',
+    		// 	'http-equiv': 'X-UA-Compatible',
+    		// 	content: 'ie=edge'
+    		// }
+    	})
+  	]
 };
