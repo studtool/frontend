@@ -1,13 +1,11 @@
 import Bus from '../../modules/Bus';
+import { ACTION_CREATOR__DISPATCHER } from "../common/coreMessageTypes";
+import { actions } from "./actions";
 
 class ActionCreator {
 
-    constructor(){
-        this.actions = {
-            'user_login': [],
-        };
-
-        this._SEND_TO_DISPATCHER = "SEND_TO_DISPATCHER";
+    constructor(actions){
+        this.actions = actions;
     }
 
     format(data){
@@ -31,8 +29,8 @@ class ActionCreator {
 
         console.log("data: ", data);
         
-        Bus.emit(this._SEND_TO_DISPATCHER, data);
+        Bus.emit(ACTION_CREATOR__DISPATCHER, data);
     }
 }
 
-export default new ActionCreator;
+export default new ActionCreator(actions);
