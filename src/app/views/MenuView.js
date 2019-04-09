@@ -1,6 +1,6 @@
-import BaseView from './BaseView.js';
-import Bus from '../../modules/Bus.js';
+import View from './common/view';
 import NavigationController from '../controllers/NavigationController.js';
+import {ActionCreator} from '../actions/actionCreator';
 
 import ReactDOM from 'react-dom';
 
@@ -20,7 +20,7 @@ const mainMenu = [
 
 
 
-export default class MenuView extends BaseView {
+export default class MenuView extends View {
 	constructor () {
 		super(menu);
 		this._navigationController = new NavigationController();
@@ -29,10 +29,11 @@ export default class MenuView extends BaseView {
 
 	show () {
 		// Bus.emit('get-user');
+		// TODO добавить кнопку по которой будет вызываться ActionCreator.exec({MAIN_PAGE__CLICK, null, null})
 		super.show();
         this.registerActions();
-        const name = 'Иван-Царевич';
-        const element = '<h1>Здравствуй, {'+name+'}!</h1>';
+        const name = 'Button';
+        const element = '<button>name</button>';
 
         ReactDOM.render(
         element,
@@ -51,5 +52,14 @@ export default class MenuView extends BaseView {
 
 	registerActions () {
 		this.viewDiv.addEventListener('click', this._navigationController.keyPressedCallback);
+	}
+
+	setStates(states){
+        const element = '<h1>Здравствуй, {'+ states[0].data +'}!</h1>';
+
+        ReactDOM.render(
+        element,
+        document.getElementById('root')
+        );
 	}
 }
