@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "11.4.0"
+
+jobs:
+  include:
+    - stage: build image
+      services:
+        - docker
+      script:
+        - ./image.sh build
+      after_success:
+        - if [[ ${TRAVIS_BRANCH} == "master" ]] && [[ ${TRAVIS_PULL_REQUEST} == "false" ]]; then
+            ./image.sh push
+          fi
