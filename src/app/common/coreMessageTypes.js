@@ -1,6 +1,6 @@
 /*
     Формат типов внутренних сообщений 
-    ОТ_КОГО__КОМУ
+    КТО
 */
 
-export const ACTION_CREATOR__DISPATCHER = "ACTION_CREATOR__DISPATCHER";
+export const DISPATCHER = "DISPATCHER";

@@ -15,7 +15,11 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.jsx']
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		alias: {
+			AppCommon: path.resolve(__dirname, 'src/app/common'),
+    		Container: path.resolve(__dirname, 'src/app/components/html/body/application/container'),
+		  }
 	},
 	module: {
 		rules: [

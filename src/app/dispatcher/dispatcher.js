@@ -1,20 +1,31 @@
-import { Bus } from "../../modules/Bus";
-import { ACTION_CREATOR__DISPATCHER } from "../common/coreMessageTypes";
-import { MainPageStore } from "../stores/mainPageStore/mainPageStore";
-
-// много импортов
+import Bus from '../../modules/Bus';
+import { DISPATCHER } from '../common/coreMessageTypes';
+import {actionStates} from '../common/statesTypes';
+import Protocol from '../common/protocol';
 
 class Dispatcher {
-    constructor(){
-        this.stores = [MainPageStore];  
-        Bus.on(ACTION_CREATOR__DISPATCHER, send) 
+    /* 
+    * Dispatcher – ещё раз форматирует запрос, добавляя тип события через протокол (для store) 
+    * и отправляет в store
+    */
+
+    format(data = {}, type = "", state = actionStates.loading){
+        return {
+            type: type,
+            data: data,
+            state: state
+        }
     }
 
-    send(data = {}){ // TODO ассинхронно
-        this.stores.forEach((store) => {
-            store.handle(data);
-        });
+    exec(data = {}, type = "", state = actionStates.loading){
+        data = this.format(data, type, state);
+        console.log("data: ", data);
+        
+        Bus.emit(
+            Protocol.encode(DISPATCHER, type), 
+            data
+        );
     }
 }
 
-export default new Dispatcher;
+export default new Dispatcher();

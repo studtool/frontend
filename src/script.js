@@ -1,28 +1,19 @@
 import 'babel-polyfill';
 
-import Router from './modules/Router.js';
-import Bus from './modules/Bus.js';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import ReactDOM from "react-dom";
 
+const Container = lazy(() => import('Container/container'))
 
-import MenuView from './app/views/MenuView.js';
+const App = () => (
+	<Router>
+	  <Suspense fallback={<div>Loading...</div>}>
+		<Switch>
+		  <Route exact path="/" component={Container}/>
+		</Switch>
+	  </Suspense>
+	</Router>
+);
 
-
-function main () {
-	[['/', MenuView],
-		// ['/signup', SignupView],
-		// ['/signin', SigninView],
-		// ['/profile', ProfileView],
-		// ['/change', ChangeView],
-		// ['/single', SingleGameView],
-		// ['/multiplayerMenu', MultiplayerMenuView],
-		// ['/createroom', CreateRoomView],
-		// ['/room', RoomView],
-		// ['/leaderboard', LeaderboardView]
-		// ['/multiplayer', MultiPlayerView]
-	].forEach((route) => { Router.register(route[0], route[1]); });
-
-	Router.open(window.location.pathname);
-}
-
-main();
-
+ReactDOM.render(<App />, document.getElementById("root"));
