@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy }  from 'react';
 const Main = lazy(() => import('./main/main'))
-const SignIn = lazy(() => import('./signIn/signIn'))
+const SignIn = lazy(() => import('Container/content/signIn/signIn'))
 
 export default class Content extends React.Component {
     constructor(props){
