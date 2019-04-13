@@ -8,11 +8,13 @@ const Container = lazy(() => import('Container/container'))
 
 const App = () => (
 	<Router>
-	  <Suspense fallback={<div>Loading...</div>}>
-		<Switch>
-		  <Route exact path="/" component={Container}/>
-		</Switch>
-	  </Suspense>
+		<Suspense fallback={<div>Loading...</div>}>
+			<Switch>
+				<Route exact path="/" component={Container}/>
+				{/* к сожалению, тут надо дублировать пути */}
+				<Route exact path="/signin" component={Container}/>
+			</Switch>
+		</Suspense>
 	</Router>
 );
 

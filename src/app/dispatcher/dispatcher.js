@@ -1,7 +1,6 @@
-import Bus from '../../modules/Bus';
-import { DISPATCHER } from '../common/coreMessageTypes';
-import {actionStates} from '../common/statesTypes';
-import Protocol from '../common/protocol';
+import Bus from 'Modules/Bus';
+import { DISPATCHER } from 'App/common/coreMessageTypes';
+import Protocol from 'App/common/protocol';
 
 class Dispatcher {
     /* 
@@ -9,17 +8,16 @@ class Dispatcher {
     * и отправляет в store
     */
 
-    format(data = {}, type = "", state = actionStates.loading){
+    format(data = {}, type = ""){
         return {
             type: type,
-            data: data,
-            state: state
+            data: data
         }
     }
 
-    exec(data = {}, type = "", state = actionStates.loading){
-        data = this.format(data, type, state);
-        console.log("data: ", data);
+    exec(data = {}, type = ""){
+        data = this.format(data, type);
+        console.log("data: ", data, type);
         
         Bus.emit(
             Protocol.encode(DISPATCHER, type), 
@@ -28,4 +26,4 @@ class Dispatcher {
     }
 }
 
-export default new Dispatcher();
+export default new Dispatcher;
