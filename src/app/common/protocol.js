@@ -13,12 +13,20 @@ export class Protocol{
             })
     }
 
-    from(message){
-        return JSON.parse(message).from
+    /**
+     * 
+     * @param {sting} adress - путь откуда-куда (JSON_string) 
+     */
+    from(adress){
+        return JSON.parse(adress).from
     }
 
-    to(message){
-        return JSON.parse(message).to
+    /**
+     * 
+     * @param {sting} adress - путь откуда-куда (JSON_string) 
+     */
+    to(adress){
+        return JSON.parse(adress).to
     }
 }
 
