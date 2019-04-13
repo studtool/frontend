@@ -21,6 +21,7 @@ export class Bus {
 	}
 
 	emit (event, data) {
+		// console.log('emitted event', event);
 		this._listeners[event].forEach((listener) => {
 			listener.callback(data);
 		});
