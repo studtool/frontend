@@ -10,9 +10,9 @@ const App = () => (
 	<Router>
 		<Suspense fallback={<div>Loading...</div>}>
 			<Switch>
-				<Route exact path="/" component={Container}/>
+				<Route path="/" component={Container}/>
 				{/* к сожалению, тут надо дублировать пути */}
-				<Route exact path="/signin" component={Container}/>
+				<Route exact path="/signup" component={Container}/>
 			</Switch>
 		</Suspense>
 	</Router>

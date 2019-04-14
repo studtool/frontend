@@ -4,7 +4,7 @@ import actions from 'App/common/actionTypes.js';
 import { DISPATCHER } from 'App/common/coreMessageTypes';
 import Protocol from 'App/common/protocol';
 
-class SignInStore extends Store{
+class SignUpStore extends Store{
     constructor(){
         const action = actions();
         super(action.signInForm);
@@ -51,4 +51,4 @@ class SignInStore extends Store{
     }
 }
 
-export default new SignInStore;
+export default new SignUpStore;

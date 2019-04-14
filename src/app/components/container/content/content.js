@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy }  from 'react';
 const Main = lazy(() => import('./main/main'))
-const SignIn = lazy(() => import('./signin/signIn'))
+const SignUp = lazy(() => import('./signUp/signUp'))
 
 export default class Content extends React.Component {
     constructor(props){
@@ -17,19 +17,10 @@ export default class Content extends React.Component {
                     <Suspense fallback={<div>Loading...</div>}>
                         <Switch>
                             <Route exact path="/" component={Main}/>
-                            <Route exact path="/signin" component={SignIn} />
+                            <Route exact path="/signup" component={SignUp} />
                         </Switch>
                     </Suspense>
                 </Router>
-                {/* <Router>
-                    <div>
-                        <Header />
-
-                        <Route exact path="/" component={Home} />
-                        <Route path="/about" component={About} />
-                        <Route path="/topics" component={Topics} />
-                    </div>
-                </Router> */}
             </div>
         )
     }
