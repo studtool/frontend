@@ -67,7 +67,7 @@ module.exports = {
     	new HtmlWebpackPlugin({
 				template: 'src/index.html',
 				title: 'StudTool',
-    		filename: 'index.html',
+    			filename: 'index.html',
     		// meta: {
     		// 	viewport: 'width=device-width, initial-scale=1.0, shrink-to-fit=no',
     		// 	'http-equiv': 'X-UA-Compatible',

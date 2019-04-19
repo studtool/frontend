@@ -1,4 +1,4 @@
-const serverUrl = 'http://ya.ru';
+const serverUrl = 'http://80.252.155.65:8010/api';
 
 export class fetchModule {
 	static _ajax ({ method = 'GET', path = '/', body, headers } = {}) {
@@ -6,7 +6,7 @@ export class fetchModule {
 
 		const options = {
 			mode: 'cors',
-			credentials: 'include',
+			credentials: 'omit',
 			method: method,
 			headers: {}
 		};
@@ -18,6 +18,8 @@ export class fetchModule {
 			options.headers['Content-Type'] = 'application/json; charset=utf-8';
 			options.body = JSON.stringify(body);
 		}
+		console.log("options: ", options);
+		
 		return fetch(url, options);
 	}
 

@@ -1,16 +1,20 @@
 export class Store{
-    // логика (или стор) может обрабатывать только один вид action
-    constructor(type){
-        // Логика подписывается на сообщение: ДИСПЕТЧЕР__ТИП_ЛОГИКИ (JSON)
-        this.type = type;
+    constructor(){ // type
+        // this.type = type;
         this.states = {};
     }
 
-    handle(){
+    handle(action, payload){
         // обработка данных 
     }
 
     getState() {
         return this.states;
+    }
+
+    updateState(newState) {
+        for (let key in newState) {
+            this.state[key] = newState[key];
+        }
     }
 }

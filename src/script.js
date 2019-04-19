@@ -11,7 +11,7 @@ const App = () => (
 		<Suspense fallback={<div>Loading...</div>}>
 			<Switch>
 				<Route path="/" component={Container}/>
-				{/* к сожалению, тут надо дублировать пути */}
+				{/* к сожалению, тут надо дублировать пути, костыляки */}
 				<Route exact path="/signup" component={Container}/>
 			</Switch>
 		</Suspense>
@@ -19,3 +19,15 @@ const App = () => (
 );
 
 ReactDOM.render(<App />, document.getElementById("root"));
+
+/*
+TODO 
+1. встроить в bus протокол => postman
+
+перенести protocol в modules, а actionTypes + core в actionCreator
+
+2. переписать всё на bus с протоколом
+3. доделать соединение модулей
+4. добавить models
+5. сделать запрос на бек
+*/

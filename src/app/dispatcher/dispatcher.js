@@ -1,6 +1,6 @@
-import Bus from 'Modules/Bus';
-import { DISPATCHER } from 'App/common/coreMessageTypes';
-import Protocol from 'App/common/protocol';
+import Postman from 'Modules/postman';
+import {sux} from 'App/actionCreator/coreMessageTypes';
+import SignUpStore from 'App/store/formStores/signUpStore/signUpStore.js';
 
 class Dispatcher {
     /* 
@@ -19,11 +19,17 @@ class Dispatcher {
         data = this.format(data, type);
         console.log("data: ", data, type);
         
-        Bus.emit(
-            Protocol.encode(DISPATCHER, type), 
+        Postman.emit(
+            sux.Dispatcher, 
+            type, 
             data
         );
     }
+
+    dispatch(action, payload) {
+        SignUpStore.handle(action, payload);
+    }
+    
 }
 
 export default new Dispatcher;

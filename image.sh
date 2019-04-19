@@ -8,7 +8,7 @@ version=$(node -pe "require('./package.json').version")
 image="$app/$service:$version"
 
 if [[ "$command" = "build" ]]; then
-  docker build -t "$image" .
+  docker build -t "$image" . --no-cache
 elif [[ "$command" = "push" ]]; then
   echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin \
     && docker push "$image"
