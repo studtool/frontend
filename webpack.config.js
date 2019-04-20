@@ -15,7 +15,12 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.jsx']
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		alias: {
+			App: path.resolve(__dirname, 'src/app'),
+			Container: path.resolve(__dirname, 'src/app/components/container'),
+			Modules: path.resolve(__dirname, 'src/modules')
+		  }
 	},
 	module: {
 		rules: [
@@ -62,7 +67,7 @@ module.exports = {
     	new HtmlWebpackPlugin({
 				template: 'src/index.html',
 				title: 'StudTool',
-    		filename: 'index.html',
+    			filename: 'index.html',
     		// meta: {
     		// 	viewport: 'width=device-width, initial-scale=1.0, shrink-to-fit=no',
     		// 	'http-equiv': 'X-UA-Compatible',

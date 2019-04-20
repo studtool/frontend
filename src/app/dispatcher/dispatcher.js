@@ -1,20 +1,35 @@
-import { Bus } from "../../modules/Bus";
-import { ACTION_CREATOR__DISPATCHER } from "../common/coreMessageTypes";
-import { MainPageStore } from "../stores/mainPageStore/mainPageStore";
-
-// много импортов
+import Postman from 'Modules/postman';
+import {sux} from 'App/actionCreator/coreMessageTypes';
+import SignUpStore from 'App/store/formStores/signUpStore/signUpStore.js';
 
 class Dispatcher {
-    constructor(){
-        this.stores = [MainPageStore];  
-        Bus.on(ACTION_CREATOR__DISPATCHER, send) 
-    }
+    /* 
+    * Dispatcher – ещё раз форматирует запрос, добавляя тип события через протокол (для store) 
+    * и отправляет в store
+    */
 
-    send(data = {}){ // TODO ассинхронно
-        this.stores.forEach((store) => {
-            store.handle(data);
-        });
+    // format(data = {}, type = ""){
+    //     return {
+    //         type: type,
+    //         data: data
+    //     }
+    // }
+
+    // exec(data = {}, type = ""){
+    //     data = this.format(data, type);
+    //     console.log("data: ", data, type);
+        
+    //     Postman.emit(
+    //         sux.Dispatcher, 
+    //         type, 
+    //         data
+    //     );
+    // }
+
+    dispatch(action, payload) {
+        SignUpStore.handle(action, payload);
     }
+    
 }
 
 export default new Dispatcher;

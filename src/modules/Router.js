@@ -1,4 +1,4 @@
-import Bus from './Bus.js';
+import Bus from './bus.js';
 
 class Router {
 	constructor () {

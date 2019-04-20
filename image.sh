@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 command="$1"
-image="studtool/frontend:0.0.1"
+
+app="studtool"
+service=$(node -pe "require('./package.json').name")
+version=$(node -pe "require('./package.json').version")
+image="$app/$service:$version"
 
 if [[ "$command" = "build" ]]; then
-  docker build -t "$image" .
+  docker build -t "$image" . --no-cache
 elif [[ "$command" = "push" ]]; then
   echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin \
     && docker push "$image"
