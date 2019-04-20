@@ -1,4 +1,5 @@
-import SignUpValidator from '../../../validators/signUpValidator.js';
+import SignUpValidator from 'App/validators/signUpValidator.js';
+import AuthModel from 'App/validators/signUpValidator';
 
 class SignUpLogic {
 

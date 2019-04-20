@@ -8,23 +8,23 @@ class Dispatcher {
     * и отправляет в store
     */
 
-    format(data = {}, type = ""){
-        return {
-            type: type,
-            data: data
-        }
-    }
+    // format(data = {}, type = ""){
+    //     return {
+    //         type: type,
+    //         data: data
+    //     }
+    // }
 
-    exec(data = {}, type = ""){
-        data = this.format(data, type);
-        console.log("data: ", data, type);
+    // exec(data = {}, type = ""){
+    //     data = this.format(data, type);
+    //     console.log("data: ", data, type);
         
-        Postman.emit(
-            sux.Dispatcher, 
-            type, 
-            data
-        );
-    }
+    //     Postman.emit(
+    //         sux.Dispatcher, 
+    //         type, 
+    //         data
+    //     );
+    // }
 
     dispatch(action, payload) {
         SignUpStore.handle(action, payload);

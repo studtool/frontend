@@ -39,7 +39,7 @@ class Controller extends Component {
     }
 
     onChange(newState) {
-        console.log(newState);
+        console.log("new state: ", newState);
         this.setState( () => {
             return newState;
         })
