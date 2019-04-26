@@ -22,6 +22,7 @@ class SignUpStore extends Store{
             case "SIGNUP_INPUT":
                 const newState = SignUpLogic.execLogic(payload);
                 this.updateState(newState);
+                console.log("store!")
                 Postman.emit(sux.SignUpStore, action+"_change_state", this.state);
         }
     }

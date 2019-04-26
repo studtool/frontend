@@ -1,11 +1,12 @@
 import React, { Suspense, lazy }  from 'react';
 
+import {Button} from 'App/components/atoms/button/button';
+
 export default class SignUp extends React.Component {
     constructor(props){
         super(props)
         this.state = {email: '', password: '', passwordRepeat: '', val:'', data: {}};
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         // this.model = new AuthModel;
     }
 
@@ -20,18 +21,12 @@ export default class SignUp extends React.Component {
     }
 
 
-    handleSubmit(event) {
-        console.log("event: ", event);
-        this.props.handleEvent(event);
-    }
-
-
     render(){
         const modifiers = this.props.modifiers ? this.props.modifiers : ''
         return (
             <div className={'signup' + modifiers}>
                 <h1>{"SignUp"}</h1>
-                <form onSubmit={this.handleSubmit} id="signUpForm">
+                <form onSubmit={this.props.handleSubmit} id="signUpForm">
                     <div className={'email' + modifiers}>
                         <h3>Email</h3>
                         <input name="email" type="email" value={this.state.email} onChange={this.handleChange} /> {/* TODO класс инпута */}
@@ -48,7 +43,8 @@ export default class SignUp extends React.Component {
                         <span>{this.props.data.passwordRepeat__errorMessage}</span>
                     </div>
                     <div className={'submit' + modifiers}>
-                        <input type="submit" value="SignUp" />
+                        {/* <input type="submit" value="SignUp" /> */}
+                        <Button type="submit" value="SignUp">SignUp</Button>
                     </div>
                 </form>
             </div>
