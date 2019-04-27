@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ActionCreator from 'App/actionCreator/actionCreator.js';
-import Postman from 'Modules/postman';
 
 class Controller extends Component {
     /**
@@ -10,46 +9,48 @@ class Controller extends Component {
      * @param {*} fromMessage – откуда почтальон (Postman) будет слушать сообщения
      * @param {*} eventMessage – тип сообщения, которое будет слушать Postman
      */
-    constructor(aimComponent, aimStore, fromMessage, eventMessage) {
+    constructor(aimComponent, aimStore, handlers) {
         super();
+        this.component = aimComponent;
         this.state = aimStore.getState();
+        this.handlers = handlers;
+
         this.handleEvent = this.handleEvent.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.component = aimComponent;
-        this.fromMessage = fromMessage;
-        this.eventMessage = eventMessage
-        Postman.on(this.fromMessage, this.eventMessage, ActionCreator.create);
-        Postman.on(this.fromMessage, this.eventMessage + "_change_state", this.onChange);
     }
 
     /**
-     * handleEvent – Обработка какого-либо события
-     * @param {*} event – событие, которое необходимо обработать
+     *  handleEvent – Предобработка и отправка в AC 
+     * @param {*} actionName – название action, на которое далее будет реакция
+     * @param {*} data – данные
      */
-    handleEvent(event) {
-        event.preventDefault();
-        console.log("handling event: ", event);
-        console.log("eventMessage: ", this.eventMessage);
-        // предобраюотка данных перед отправкой в ActionCreator
+    handleEvent(actionName, data) {
+        debugger;
+        // event.preventDefault();
+        console.log("actionName: ", actionName , "data: ", data);
+        // предобработка данных перед отправкой в ActionCreator
         const rawData = {
-            actionName: this.eventMessage,
-            data: Array.from(event.target.elements)
+            actionName: actionName,
+            data: data
         }       
-        Postman.emit(this.fromMessage, this.eventMessage, rawData);
+        ActionCreator.create(rawData)
     }
 
+    // 1. после некорретных данный все равно переходит далее в стор
+    // 2. контроллер компоненты просирает контекст и делает это после перехода управления в стор
     onChange(newState) {
         console.log("new state: ", newState);
         this.setState( () => {
             return newState;
         })
+        console.log("Applied state: ", this.state);
     }
 
     render() {
         return (
-            <div>
-                <this.component handleEvent={this.handleEvent} data={this.state}/>
-            </div>
+            <>
+                <this.component handlers={this.handlers} data={this.state}/>
+            </>
         );
     }
     

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`button test 1`] = `
+.c0 {
+  color: #ffffff;
+  background: #5952de;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.c0:hover {
+  background: #0928ab;
+}
+
+<button
+  className="c0"
+>
+  test
+</button>
+`;
