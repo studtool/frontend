@@ -3,6 +3,8 @@ WORKDIR /tmp
 COPY . .
 RUN npm ci && npm run build
 
+RUN npm test
+
 FROM nginx:1.16
 COPY --from=base /tmp/nginx.conf /etc/nginx/nginx.conf
 COPY --from=base /tmp/dist /var/www
