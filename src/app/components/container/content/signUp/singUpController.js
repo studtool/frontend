@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SignUp from './signUp.js';
-import SignUpStore from 'App/store/formStores/signUpStore/signUpStore.js';
+import SignUpFormStore from 'App/store/formStores/signUpFormStore/signUpFormStore.js';
 import {sux} from 'App/actionCreator/coreMessageTypes.js'
 import Postman from 'Modules/postman';
 import ActionCreator from 'App/actionCreator/actionCreator.js';
@@ -13,7 +13,7 @@ export default class SignUpController extends Controller{
         const handlers = {};
 
         super(SignUp, SignUpStore, handlers);
-        Postman.on(sux.SignUpStore, "SIGNUP_INPUT" + "_change_state", this.onChange);
+        Postman.on(sux.SignUpStore, "USER_SIGNUP" + "_change_state", this.onChange);
         this.state = SignUpStore.getState();
 
         // а теперь добавим наш хендлер
@@ -25,7 +25,7 @@ export default class SignUpController extends Controller{
 
     handleSubmit(event) {
         this.handleEvent(
-            "SIGNUP_INPUT", 
+            "USER_SIGNUP", 
             Array.from(event.target.elements)
         );
     }
@@ -34,28 +34,35 @@ export default class SignUpController extends Controller{
 */
 
 export default class SignUpController extends Component {
-    constructor() {
-        super();
-        this.state = SignUpStore.getState();
+    constructor(props) {
+        super(props);
+        this.state = SignUpFormStore.getState();
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        Postman.on(sux.SignUpStore, "SIGNUP_INPUT" + "_change_state", this.onChange);
+        this.onSuccessSignUp = this.onSuccessSignUp.bind(this);
+
+        Postman.on(sux.SignUpFormStore, "SIGNUP_CONTROLLER__change_state", this.onChange);
+        Postman.on(sux.SignUpFormStore, "SIGNUP_CONTROLLER__redirect", this.onSuccessSignUp);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const rawData = {
-            actionName: "SIGNUP_INPUT",
+            actionName: "USER_SIGNUP",
             data: Array.from(event.target.elements)
         }       
         ActionCreator.create(rawData)
     }
 
-    onChange(newState) {
-        console.log(newState);
+    onChange(newState){
         this.setState( () => {
             return newState;
-        })
+        });
+    }
+
+    onSuccessSignUp(){
+        this.props.history.push("/");
     }
 
     render() {

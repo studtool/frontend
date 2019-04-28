@@ -4,5 +4,5 @@
 
 export const sux = {
     Dispathcer : "Dispathcer",
-    SignUpStore : "SignUpStore"
+    SignUpFormStore : "SignUpFormStore"
 }

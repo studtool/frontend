@@ -1,19 +1,30 @@
-function createNewObject(obj) {
+function createObjectCopy(obj) {
     const newObj = {};
     for (let key in obj) {
         if (obj[key].constructor.name === "Object") {
-            newObj[key] = createNewObject(obj[key]);
+            newObj[key] = createObjectCopy(obj[key]);
         } else {
             newObj[key] = obj[key];
         }
     }
     return newObj;
 }
+function makeArrayOfObjects(data) {
+    const result= []
+    for (key in data) {
+        let b = new Object;
+        b[key] = data[key];
+        result.push(b);
+    }
+    return result;
+}
 
 
-
-function registrationInputFormatMethod(format, data) {
-    const undepended = createNewObject(format);
+function format(format, data) {
+    if (data.constructor.name === "Object") {
+        data = makeArrayOfObjects(data);
+    }
+    const undepended = createObjectCopy(format);
     const formatedData = data.reduce((acc, val) => {
         if (val.name in format) {
             acc[val.name] = val.value; 
@@ -24,4 +35,5 @@ function registrationInputFormatMethod(format, data) {
     return formatedData;
 }
 
-export default registrationInputFormatMethod;
+
+export default format;

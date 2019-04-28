@@ -1,6 +1,6 @@
-const serverUrl = 'http://80.252.155.65:8010/api';
+const serverUrl = 'http://80.252.155.65:8000/api/v0';
 
-export class fetchModule {
+export default class fetchModule {
 	static _ajax ({ method = 'GET', path = '/', body, headers } = {}) {
 		const url = serverUrl + path;
 
@@ -17,9 +17,7 @@ export class fetchModule {
 		if (body) {
 			options.headers['Content-Type'] = 'application/json; charset=utf-8';
 			options.body = JSON.stringify(body);
-		}
-		console.log("options: ", options);
-		
+		}		
 		return fetch(url, options);
 	}
 

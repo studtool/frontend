@@ -46,7 +46,6 @@ export class Postman {
 
 	on (from, event, callback) {
 		const e = this.encode(from, event);
-
 		if (!this._listeners[e]) {
 			this._listeners[e] = [];
 		}
@@ -68,6 +67,7 @@ export class Postman {
 	}
 
 	emit (from, event, data) {
+		// console.log(this._listeners);
 		const e = this.encode(from, event);
 
 		// console.log('emitted e', e);

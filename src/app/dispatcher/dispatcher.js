@@ -1,6 +1,6 @@
 import Postman from 'Modules/postman';
 import {sux} from 'App/actionCreator/coreMessageTypes';
-import SignUpStore from 'App/store/formStores/signUpStore/signUpStore.js';
+import SignUpFormStore from 'App/store/formStores/signUpFormStore/signUpFormStore.js';
 
 class Dispatcher {
     /* 
@@ -26,8 +26,10 @@ class Dispatcher {
     //     );
     // }
 
-    dispatch(action, payload) {
-        SignUpStore.handle(action, payload);
+
+    // TODO написать userStore в котором хранить залогинен ли пользователь и всю подобную инфу о нем
+    dispatch(action, payload = {}) {
+        SignUpFormStore.handle(action, payload);
     }
     
 }

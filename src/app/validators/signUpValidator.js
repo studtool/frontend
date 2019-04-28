@@ -11,11 +11,11 @@ class SignUpValidator {
         if (data.password !== data.passwordRepeat) {
             res.password__errorMessage = "пароли не совпадают";
             res.passwordRepeat__errorMessage = "пароли не совпадают";
-            res.status = 0;
+            res.wasError = 1;
         } else {
             res.password__errorMessage = "";
             res.passwordRepeat__errorMessage = "";
-            res.status = 1;
+            res.wasError = 0;
         }
         return res
     }
@@ -24,10 +24,10 @@ class SignUpValidator {
         const res = {};
         if (!(data.email.includes("@"))) {
             res.email__errorMessage = "неверный email";
-            res.status = 0;
+            res.wasError = 1;
         } else {
             res.email__errorMessage = "";
-            res.status = 1;
+            res.wasError = 0;
         }
         return res
     }
