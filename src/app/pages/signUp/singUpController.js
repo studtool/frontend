@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import SignUp from './signUp.js';
-import SignUpStore from 'App/store/formStores/signUpStore/signUpStore.js';
-import {sux} from 'App/actionCreator/coreMessageTypes.js'
+import SignUpStore from '../../store/formStores/signUpStore/signUpStore.js';
+import {sux} from '../../actionCreator/coreMessageTypes.js'
 import Postman from 'Modules/postman';
-import ActionCreator from 'App/actionCreator/actionCreator.js';
+import ActionCreator from '../../actionCreator/actionCreator.js';
+import Header from '../../components/organisms/header/header.js';
 
 /*
 export default class SignUpController extends Controller{
@@ -61,6 +62,7 @@ export default class SignUpController extends Component {
     render() {
         return (
             <div>
+                <Header></Header>
                 <h1>SignUp Page</h1>
                 <SignUp handleSubmit={this.handleSubmit} data={this.state}/>
             </div>
