@@ -66,7 +66,9 @@ export class Postman {
 		this._listeners[e] = [];
 	}
 
-	emit (from, event, data) {
+	// TODO сделать деструкторизацию params ={}
+	emit (from, event, data, ziz) {
+		// console.log(ziz);
 		// console.log(this._listeners);
 		const e = this.encode(from, event);
 

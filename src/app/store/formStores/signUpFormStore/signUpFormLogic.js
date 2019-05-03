@@ -1,20 +1,15 @@
 import SignUpValidator from 'App/validators/signUpValidator.js';
 import AuthModel from '../../../../models/authModel.js';
 import ActionCreator from '../../../actionCreator/actionCreator.js'
-
+import {PasswordMatchError, EmailPatternError} from '../../../Errors/inputValidationErrors.js';
+import {initialState} from './signUpFormStore.js';
 
 class SignUpLogic {
 
     async execLogic(payload, state) {
-        let newState = {};
-        newState = this.validate(payload);
 
-        // в этом цикле по ссылке заполняется this.state из signUpFormStore
-        for (let key in newState.state){
-            state[key] = newState.state[key];
-        }
+        if (this.validate(payload,state)) {
 
-        if (newState.passedValidation) {
             try {
                 const signUpResult = await AuthModel.signUp(payload) // регистрируемся
                 try {
@@ -47,26 +42,40 @@ class SignUpLogic {
         }
     }
 
+    validate(payload, state) {
+        /**
+         * на каждый вызов функции нужен независимый объект, чтобы в случае ввода верного пароля
+         * сообщения об ошибках убирались
+         */
+        const stateTemplate = {...initialState}; 
+        let passedValidation = true;
+        SignUpValidator.allValidations.forEach( validation => {
+            try {
+                validation(payload);
+            } catch (error) {
+                passedValidation = false;
 
-    validate(payload) {
-        let passedValidation = 1;
-        let summaryResult = {}; 
-        summaryResult.state = SignUpValidator.allValidations.reduce( (acc, validation) => {
-            let oneValidationResult = validation(payload);
-            if (oneValidationResult.wasError) {
-                passedValidation = 0;
-            }
+                if (error instanceof PasswordMatchError) {
+                    console.log("hi");
+                    stateTemplate["password__errorMessage"] = "пароли не совпадают";
+                    stateTemplate["passwordRepeat__errorMessage"] = "пароли не совпадают";
 
-            for (let key in oneValidationResult) {
-                if ( key != "wasError") {
-                    acc[key] = oneValidationResult[key]
+                } else if (error instanceof EmailPatternError) {
+                    stateTemplate["email__errorMessage"] = "неверный email";
                 }
             }
+        });
 
-            return acc;
-        }, {});
-        summaryResult.passedValidation = passedValidation;
-        return summaryResult;
+        /**
+         * меняем состояние в сторе
+         * если были ошибки, в state попадут сообщения
+         * если после ошибок все было введено верно, сообщения об ошибках заполнятся 
+         * пустыми "" из шаблона, таким образом они пропадут
+         */
+        for (let key in stateTemplate) {
+            state[key] = stateTemplate[key];
+        }
+        return passedValidation;
     }
 }
 

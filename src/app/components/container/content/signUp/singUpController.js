@@ -42,6 +42,7 @@ export default class SignUpController extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSuccessSignUp = this.onSuccessSignUp.bind(this);
 
+        // console.log(Postman._listeners);
         Postman.on(sux.SignUpFormStore, "SIGNUP_CONTROLLER__change_state", this.onChange);
         Postman.on(sux.SignUpFormStore, "SIGNUP_CONTROLLER__redirect", this.onSuccessSignUp);
     }
