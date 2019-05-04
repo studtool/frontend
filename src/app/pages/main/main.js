@@ -1,17 +1,17 @@
-import React, { Component }  from 'react';
+import React, {Component} from 'react';
 import Header from '../../components/organisms/header/header';
 
 export default class Main extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-    render(){
+    render() {
         return (
             <>
                 <Header></Header>
                 <div className={'main'}>
-                    <h1>{"Main"}</h1>
+                    <h1>{'Main'}</h1>
                     {this.props.children}
                 </div>
             </>

@@ -1,32 +1,33 @@
-export class Protocol{
-
+export class Protocol {
     /**
      * Encode – кодирует тип сообщения
      * @param {String} from – отправитель сообщения
      * @param {String} to – получатель сообщения
-     * @return {String} тип сообщения (JSON_string) 
+     * @return {String} тип сообщения (JSON_string)
     */
-    encode(from, to){ 
+    encode(from, to) {
         return JSON.stringify({
-                from : from,
-                to: to
-            })
+            from: from,
+            to: to,
+        });
     }
 
     /**
-     * 
-     * @param {sting} adress - путь откуда-куда (JSON_string) 
+     *
+     * @param {sting} adress - путь откуда-куда (JSON_string)
+     * @return {object}
      */
-    from(adress){
-        return JSON.parse(adress).from
+    from(adress) {
+        return JSON.parse(adress).from;
     }
 
     /**
-     * 
-     * @param {sting} adress - путь откуда-куда (JSON_string) 
+     *
+     * @param {sting} adress - путь откуда-куда (JSON_string)
+     * @return {object}
      */
-    to(adress){
-        return JSON.parse(adress).to
+    to(adress) {
+        return JSON.parse(adress).to;
     }
 }
 

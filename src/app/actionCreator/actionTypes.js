@@ -1,17 +1,30 @@
-import signUpInputBody from './actionTypesBody.js';
-import signUpInputFormatMethod from './actionFormatMethods.js';
+import {userSignUpBody, userSignInBody} from './actionTypesBody.js';
+import format from './actionFormatMethods.js';
 const Types = {
-    "SIGNUP_INPUT": {
-        body: signUpInputBody,
-        formatMethod: signUpInputFormatMethod
-    }
+    'USER_SIGNUP': {
+        body: userSignUpBody,
+        formatMethod: format,
+    },
+
+    'USER_SIGNIN': {
+        body: userSignInBody,
+        formatMethod: format,
+    },
+
+    'FAILED_SIGNUP': {},
+    'FAILED_SIGNIN': {},
+    'SUCCESS_SIGNIN': {},
+    'SUCCESS_SIGNUP': {},
+    'INCORRECT_USER_INPUT_SIGNUP': {},
 };
 
 // перечисление типов
-export const typesEnum = {}
+export const typesEnum = {};
 
-// заполнение типов
-function _getTypes(){
+/**
+ * Никита, напиши для его это нужно пожалуйста
+ */
+function _getTypes() {
     for (const key in Types) {
         typesEnum[key] = key;
     }

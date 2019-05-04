@@ -1,8 +1,8 @@
 /*
-    Формат типов внутренних сообщений 
+    Формат типов внутренних сообщений
 */
 
 export const sux = {
-    Dispathcer : "Dispathcer",
-    SignUpStore : "SignUpStore"
-}
+    Dispathcer: 'Dispathcer',
+    SignUpFormStore: 'SignUpFormStore',
+};

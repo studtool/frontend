@@ -1,7 +1,7 @@
 import React from 'react';
 import {InputText} from './inputText';
-import renderer from 'react-test-renderer'
-import 'jest-styled-components'
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 test('inputText test', () => {
     const stubFunc = () => {};
@@ -9,8 +9,8 @@ test('inputText test', () => {
     const tree = renderer.create(
         <InputText
             qa='test-input'
-            name="testName" 
-            type="password" 
+            name="testName"
+            type="password"
             value="thisValue"
             onChange={stubFunc}
         >

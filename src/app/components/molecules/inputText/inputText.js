@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {Label} from '../../atoms/label/label';
 import {InputTextField} from '../../atoms/inputTextField/inputTextField.js';
 
-export class InputText extends Component{
-
+export class InputText extends Component {
     render() {
         const qa = this.props.qa ? this.props.qa : 'no-qa';
         const inputProps = ( ( {children, ...others} ) => ({...others}))(this.props);

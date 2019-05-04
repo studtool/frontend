@@ -1,12 +1,10 @@
-const signUpInputBody = {
-    "email": "",
-    "password": "",
-    "passwordRepeat": "",
-    "errors": {
-        "email__errorMessage": "",
-        "password__errorMessage": "",
-        "passwordRepeat__errorMessage": "",
-    }
+export const userSignUpBody = {
+    'email': '',
+    'password': '',
+    'passwordRepeat': '',
 };
 
-export default signUpInputBody;
+export const userSignInBody = {
+    'email': '',
+    'password': '',
+};
