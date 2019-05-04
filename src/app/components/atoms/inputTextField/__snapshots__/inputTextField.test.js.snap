@@ -1,22 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`inputTextField test 1`] = `
-.c0 {
-  background: #ffffff;
-  border: none;
-  border-bottom: 1px solid #757575;
-  outline: none;
-}
-
-.c0:hover {
-  border-bottom: 2px solid #000000;
-}
-
-.c0:focus {
-  border-bottom: 2px solid #0928ab;
-}
-
 <input
-  className="c0"
+  className=""
 />
 `;

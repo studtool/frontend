@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inputText test 1`] = `
+<div
+  qa="test-input"
+>
+  <label
+    className=""
+  >
+    test
+    <input
+      className=""
+      name="testName"
+      onChange={[Function]}
+      type="password"
+      value="thisValue"
+    />
+  </label>
+</div>
+`;
