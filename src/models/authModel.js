@@ -1,12 +1,9 @@
-import fetchModule from "../modules/fetchModule.js";
+import fetchModule from '../modules/fetchModule.js';
 
 export default class AuthModel {
-
-    static async signUp (userData = {}) {
-        try{
-            const response = await fetchModule.doPost({ path: "/auth/profiles", body: userData });
-            console.log(response);
-
+    static async signUp(userData = {}) {
+        try {
+            const response = await fetchModule.doPost({path: '/auth/profiles', body: userData});
             if (response.status === 200) {
                 return userData;
             } else {
@@ -17,9 +14,9 @@ export default class AuthModel {
         }
     }
 
-    static async signIn (userData = {}) {
+    static async signIn(userData = {}) {
         try {
-            const response = await fetchModule.doPost({ path: "/auth/sessions", body: userData });
+            const response = await fetchModule.doPost({path: '/auth/sessions', body: userData});
             if (response.status === 200) {
                 return userData;
             } else {
@@ -30,4 +27,3 @@ export default class AuthModel {
         }
     }
 }
-

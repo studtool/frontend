@@ -4,7 +4,7 @@ class SignUpValidator {
     constructor() {
         this.allValidations = [
             this.passwordMatch.bind(this),
-            this.emailPattern.bind(this)
+            this.emailPattern.bind(this),
         ];
     }
 
@@ -15,7 +15,7 @@ class SignUpValidator {
     }
 
     emailPattern(data) {
-        if (!(data.email.includes("@"))) {
+        if (!(data.email.includes('@'))) {
             throw new EmailPatternError;
         }
     }

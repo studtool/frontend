@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { colors } from '../style';
+import styled from 'styled-components';
+import {colors} from '../style';
 
 export const InputTextField = styled.input`
     color: ${colors.blrack};

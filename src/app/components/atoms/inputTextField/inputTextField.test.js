@@ -1,8 +1,8 @@
 import React from 'react';
 import {InputTextField} from './inputTextField';
 import {colors} from '../style';
-import renderer from 'react-test-renderer'
-import 'jest-styled-components'
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 test('inputTextField test', () => {
     const tree = renderer.create(<InputTextField/>).toJSON();

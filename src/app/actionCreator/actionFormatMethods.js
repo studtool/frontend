@@ -1,21 +1,12 @@
-
-// TODO создание копии объекта заменить на spread оператор
-function createObjectCopy(obj) {
-    const newObj = {};
-    for (let key in obj) {
-        if (obj[key].constructor.name === "Object") {
-            newObj[key] = createObjectCopy(obj[key]);
-        } else {
-            newObj[key] = obj[key];
-        }
-    }
-    return newObj;
-}
-
+/**
+ *
+ * @param {*} data - объект вида {key:value, key:value}
+ * @return {Array} массив вида  [{key:value}, {key:value}]
+ */
 function makeArrayOfObjects(data) {
-    const result= []
+    const result= [];
     for (key in data) {
-        let b = new Object;
+        const b = new {};
         b[key] = data[key];
         result.push(b);
     }
@@ -23,18 +14,20 @@ function makeArrayOfObjects(data) {
 }
 
 /**
- * 
- * @param {*} format - объект с соответствующими формату события полями
- * @param {*} data - массив объектов вида [{key:value}, {key:value}, {key:value}] в каждом объекте по одному полю
+ * @param {object} format - формат, к которому будут приведены данные,
+ * передаваемые в событии
+ * @param {Array} data - массив объектов вида [{key:value}, {key:value}, {key:value}]
+ *  в каждом объекте по одному полю
+ * @return {object} данные события, приведённые к соответствующему формату
  */
 function format(format, data) {
-    if (data.constructor.name === "Object") {
+    if (data.constructor.name === 'Object') {
         data = makeArrayOfObjects(data);
     }
-    const undepended = createObjectCopy(format);
+    const undepended = {...format};
     const formatedData = data.reduce((acc, val) => {
         if (val.name in format) {
-            acc[val.name] = val.value; 
+            acc[val.name] = val.value;
         }
         return acc;
     }, undepended);

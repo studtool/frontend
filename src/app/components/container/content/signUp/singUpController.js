@@ -1,38 +1,13 @@
 import React, {Component} from 'react';
 import SignUp from './signUp.js';
 import SignUpFormStore from 'App/store/formStores/signUpFormStore/signUpFormStore.js';
-import {sux} from 'App/actionCreator/coreMessageTypes.js'
+import {sux} from 'App/actionCreator/coreMessageTypes.js';
 import Postman from 'Modules/postman';
 import ActionCreator from 'App/actionCreator/actionCreator.js';
 
-/*
-export default class SignUpController extends Controller{
-    constructor (){
-
-        // тут вообще магия, биндить до super() нельзя, зато после можно в объект добавить
-        const handlers = {};
-
-        super(SignUp, SignUpStore, handlers);
-        Postman.on(sux.SignUpStore, "USER_SIGNUP" + "_change_state", this.onChange);
-        this.state = SignUpStore.getState();
-
-        // а теперь добавим наш хендлер
-        this.handleSubmit = this.handleSubmit.bind(this);
-        handlers["handleSubmit"] = this.handleSubmit;
-        
-    }
-     
-
-    handleSubmit(event) {
-        this.handleEvent(
-            "USER_SIGNUP", 
-            Array.from(event.target.elements)
-        );
-    }
-    
-}
-*/
-
+/**
+ * Класс контроллер страницы регистрации
+ */
 export default class SignUpController extends Component {
     constructor(props) {
         super(props);
@@ -42,28 +17,39 @@ export default class SignUpController extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSuccessSignUp = this.onSuccessSignUp.bind(this);
 
-        // console.log(Postman._listeners);
-        Postman.on(sux.SignUpFormStore, "SIGNUP_CONTROLLER__change_state", this.onChange);
-        Postman.on(sux.SignUpFormStore, "SIGNUP_CONTROLLER__redirect", this.onSuccessSignUp);
+        Postman.on(sux.SignUpFormStore, 'SIGNUP_CONTROLLER__change_state', this.onChange);
+        Postman.on(sux.SignUpFormStore, 'SIGNUP_CONTROLLER__redirect', this.onSuccessSignUp);
     }
 
+    /**
+     * обработка сабмита формы регистрации
+     * @param {event} event - событие сабмита формы
+     */
     handleSubmit(event) {
         event.preventDefault();
         const rawData = {
-            actionName: "USER_SIGNUP",
-            data: Array.from(event.target.elements)
-        }       
-        ActionCreator.create(rawData)
+            actionName: 'USER_SIGNUP',
+            data: Array.from(event.target.elements),
+        };
+        ActionCreator.create(rawData);
     }
 
-    onChange(newState){
+    /**
+     * обновление состояния в контроллере
+     * @param {object} newState - новое состояние формы
+     */
+    onChange(newState) {
         this.setState( () => {
             return newState;
         });
     }
 
-    onSuccessSignUp(){
-        this.props.history.push("/");
+    /**
+     * редирект на главную после удачной регистрации
+     */
+
+    onSuccessSignUp() {
+        this.props.history.push('/');
     }
 
     render() {

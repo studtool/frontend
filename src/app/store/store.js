@@ -1,11 +1,10 @@
-export class Store{
-    constructor(){ // type
-        // this.type = type;
+export class Store {
+    constructor() { // type
         this.states = {};
     }
 
-    handle(action, payload){
-        // обработка данных 
+    handle(action, payload) {
+        // обработка данных
     }
 
     getState() {
@@ -13,7 +12,7 @@ export class Store{
     }
 
     updateState(newState) {
-        for (let key in newState) {
+        for (const key in newState) {
             this.state[key] = newState[key];
         }
     }

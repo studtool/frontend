@@ -1,31 +1,30 @@
-import React, { Suspense, lazy }  from 'react';
+import React, {Suspense, lazy} from 'react';
 
 import {Button} from 'App/components/atoms/button/button';
 
 export default class SignUp extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {email: '', password: '', passwordRepeat: '', val:'', data: {}};
+    constructor(props) {
+        super(props);
+        this.state = {email: '', password: '', passwordRepeat: '', val: '', data: {}};
         this.handleChange = this.handleChange.bind(this);
-        // this.model = new AuthModel;
     }
 
     handleChange(event) {
         const target = event.target;
-        const value = target.value; //target.type === 'checkbox' ? target.checked : 
+        const value = target.value; // target.type === 'checkbox' ? target.checked :
         const name = target.name;
-        
+
         this.setState({
-          [name]: value
-        }); 
+            [name]: value,
+        });
     }
 
 
-    render(){
-        const modifiers = this.props.modifiers ? this.props.modifiers : ''
+    render() {
+        const modifiers = this.props.modifiers ? this.props.modifiers : '';
         return (
             <div className={'signup' + modifiers}>
-                <h1>{"SignUp"}</h1>
+                <h1>{'SignUp'}</h1>
                 <form onSubmit={this.props.handleSubmit} id="signUpForm">
                     <div className={'email' + modifiers}>
                         <h3>Email</h3>
@@ -48,6 +47,6 @@ export default class SignUp extends React.Component {
                     </div>
                 </form>
             </div>
-        )
+        );
     }
 }
