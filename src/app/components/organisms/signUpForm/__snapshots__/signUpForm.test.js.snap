@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`signUp Form test 1`] = `
+<div
+  className="signup-form"
+  qa="no-qa"
+>
+  <h1>
+    SignUp
+  </h1>
+    
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="email"
+    >
+      <div
+        qa="email-input"
+      >
+        <label
+          className=""
+        >
+          Email
+          <input
+            className=""
+            name="email"
+            type="email"
+          />
+        </label>
+      </div>
+      <span>
+        
+      </span>
+    </div>
+    <div
+      className="password"
+    >
+      <div
+        qa="no-qa"
+      >
+        <label
+          className=""
+        >
+          Пароль
+          <input
+            className=""
+            name="password"
+            type="password"
+          />
+        </label>
+      </div>
+      <span>
+        
+      </span>
+    </div>
+    <div
+      className="password-repeat"
+    >
+      <div
+        qa="no-qa"
+      >
+        <label
+          className=""
+        >
+          Повторите пароль
+          <input
+            className=""
+            name="passwordRepeat"
+            type="password"
+          />
+        </label>
+      </div>
+      <span>
+        
+      </span>
+    </div>
+    <div
+      className="submit"
+    >
+      <button
+        className=""
+        type="submit"
+        value="SignUp"
+      >
+        SignUp
+      </button>
+    </div>
+  </form>
+</div>
+`;
