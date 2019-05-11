@@ -12,9 +12,13 @@ const Types = {
     },
 
     'FAILED_SIGNUP': {},
+
     'FAILED_SIGNIN': {},
+
     'SUCCESS_SIGNIN': {},
+
     'SUCCESS_SIGNUP': {},
+
     'INCORRECT_USER_INPUT_SIGNUP': {},
 };
 

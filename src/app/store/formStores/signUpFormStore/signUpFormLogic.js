@@ -5,7 +5,7 @@ import {PasswordMatchError, EmailPatternError} from '../../../Errors/inputValida
 import {initialState} from './signUpFormStore.js';
 
 class SignUpLogic {
-    async execLogic(payload, state) {
+    async execLogic({payload, state} = {}) {
         if (this.validate(payload, state)) {
             try {
                 const signUpResult = await AuthModel.signUp(payload); // регистрируемся
