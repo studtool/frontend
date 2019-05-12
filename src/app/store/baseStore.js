@@ -1,6 +1,9 @@
 import Postman from '../../modules/postman.js';
 
-export class BaseStore {
+export default class BaseStore {
+    constructor() {
+        Postman.on('ActionCreator', 'DISPATCH', this.handle.bind(this));
+    }
     getState() {
         return this.state;
     }
@@ -15,14 +18,16 @@ export class BaseStore {
      * Если обработчик события не был передан, то вызывается Postman.emit
      * с переданными аргументами
      */
-    handle(action, payload) {
-        if (this.handledActions[action].callback) {
-            this.handledActions[action].arguments.payload = payload;
-            this.handledActions[action].callback(
-                this.handledActions[action].arguments
-            );
-        } else {
-            Postman.emit(this.handledActions[action].arguments);
+    handle({action, payload = {}} = {}) {
+        if (this.handledActions[action]) { // если стор обрабатывает переданный action
+            if (this.handledActions[action].callback) { // если для обработки был задан колбэк
+                this.handledActions[action].arguments.payload = payload;
+                this.handledActions[action].callback(
+                    this.handledActions[action].arguments
+                );
+            } else { // если колбэка нет то просто емитим
+                Postman.emit(this.handledActions[action].arguments);
+            }
         }
     }
 }

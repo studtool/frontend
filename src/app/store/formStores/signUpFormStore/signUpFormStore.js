@@ -1,6 +1,5 @@
-import {BaseStore} from 'App/store/baseStore';
+import BaseStore from 'App/store/baseStore';
 import SignUpLogic from './signUpFormLogic';
-
 /**
  * начальное состояние стора при его создание, так же служит пустым шаблоном состояния стора.
  * данный шаблон используется в логике стора

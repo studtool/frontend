@@ -12,6 +12,7 @@ import Header from '../../components/organisms/header/header.js';
 export default class SignUpController extends Component {
     constructor(props) {
         super(props);
+
         this.state = SignUpFormStore.getState();
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,8 +30,8 @@ export default class SignUpController extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const rawData = {
-            actionName: 'USER_SIGNUP',
-            data: Array.from(event.target.elements),
+            action: 'USER_SIGNUP',
+            actionData: Array.from(event.target.elements),
         };
         ActionCreator.create(rawData);
     }
@@ -40,6 +41,7 @@ export default class SignUpController extends Component {
      * @param {object} newState - новое состояние формы
      */
     onChange(newState) {
+        // console.log(newState);
         this.setState( () => {
             return newState;
         });

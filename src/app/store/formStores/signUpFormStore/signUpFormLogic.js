@@ -1,7 +1,7 @@
 import SignUpValidator from 'App/validators/signUpValidator.js';
 import AuthModel from '../../../../models/authModel.js';
 import ActionCreator from '../../../actionCreator/actionCreator.js';
-import {PasswordMatchError, EmailPatternError} from '../../../Errors/inputValidationErrors.js';
+import {PasswordMatchError, EmailPatternError} from '../../../errors/inputValidationErrors.js';
 import {initialState} from './signUpFormStore.js';
 
 class SignUpLogic {
@@ -16,10 +16,13 @@ class SignUpLogic {
                     // чтобы линтер не орал что я не использую signInResult
                     console.log(signInResult);
                     ActionCreator.create({
-                        actionName: 'SUCCESS_SIGNUP',
+                        action: 'SUCCESS_SIGNUP',
                     });
                 } catch (error) {
                     state['signUp_errorMessage'] = 'у нас не получилось залогинить вас в систему';
+                    ActionCreator.create({
+                        action: 'FAILED_SIGNUP',
+                    });
                 }
             } catch (error) {
                 if (error === 409) {
@@ -31,12 +34,12 @@ class SignUpLogic {
                 }
 
                 ActionCreator.create({
-                    actionName: 'FAILED_SIGNUP',
+                    action: 'FAILED_SIGNUP',
                 });
             }
         } else {
             ActionCreator.create({
-                actionName: 'INCORRECT_USER_INPUT_SIGNUP',
+                action: 'INCORRECT_USER_INPUT_SIGNUP',
             });
         }
     }

@@ -1,14 +1,27 @@
-import Postman from 'Modules/postman';
-import {Store} from 'App/store/store';
-import SignUpLogic from './signUpFormLogic';
-import {sux} from 'App/actionCreator/coreMessageTypes.js';
+import BaseStore from '../baseStore.js';
+import UserStoreLogic from './userStoreLogic.js';
 
-class UserStore extends Store {
 
+class UserStore extends BaseStore {
     constructor() {
         super();
+        this.handledActions = this.getHandledActions();
     }
 
+    /**
+     * События на которые реагирует store
+     * @return {object}
+     */
+    getHandledActions() {
+        return {
+            'SUCCESS_SIGNUP': {
+                callback: (args) => {
+                    UserStoreLogic.saveTokens(args);
+                },
+                arguments: {},
+            },
+        };
+    }
 }
 
 
