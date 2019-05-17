@@ -1,5 +1,5 @@
-import BaseStore from 'App/store/baseStore';
-import SignUpLogic from './signUpFormLogic';
+import BaseStore from '../../../../../lib/baseStore.js';
+import SignUpLogic from './signUpFormLogic.js';
 /**
  * начальное состояние стора при его создание, так же служит пустым шаблоном состояния стора.
  * данный шаблон используется в логике стора
@@ -14,9 +14,7 @@ export const initialState = {
 
 class SignUpFormStore extends BaseStore {
     constructor() {
-        super();
-        this.state = {...initialState}; // независимая копия объекта
-        this.handledActions = this.getHandledActions();
+        super(initialState);
     }
 
     /**

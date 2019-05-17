@@ -1,6 +1,6 @@
 import SignUpValidator from 'App/validators/signUpValidator.js';
 import AuthModel from '../../../../models/authModel.js';
-import ActionCreator from '../../../actionCreator/actionCreator.js';
+import ActionCreator from '../../../../../lib/actionCreator.js';
 import {PasswordMatchError, EmailPatternError} from '../../../errors/inputValidationErrors.js';
 import {initialState} from './signUpFormStore.js';
 

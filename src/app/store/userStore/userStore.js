@@ -1,4 +1,4 @@
-import BaseStore from '../baseStore.js';
+import BaseStore from '../../../../lib/baseStore.js';
 import UserStoreLogic from './userStoreLogic.js';
 
 
