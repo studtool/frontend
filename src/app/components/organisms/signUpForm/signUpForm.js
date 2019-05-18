@@ -8,12 +8,17 @@ export class SignUpForm extends Component {
     }
 
     render() {
-        const qa = this.props.qa ? this.props.qa : 'no-qa';
+        const {
+            qa = false,
+            data = {},
+            handleSubmit = null,
+        } = this.props;
+
         return (
             <>
-                <div className={'signup-form'} qa={qa}>
+                <div className={'signup-form'} data-qa={qa ? 'signup-form' : void 0}>
                     <h1>{'SignUp'}</h1>  {/* TODO вынести в children */}
-                    <form onSubmit={this.props.handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className={'email'}>
                             <InputText
                                 qa="email-input"
@@ -22,7 +27,7 @@ export class SignUpForm extends Component {
                             >
                                 Email
                             </InputText>
-                            <span>{this.props.data.email__errorMessage}</span>
+                            <span>{data.email__errorMessage}</span>
                         </div>
 
                         <div className={'password'}>
@@ -32,7 +37,7 @@ export class SignUpForm extends Component {
                             >
                                 Пароль
                             </InputText>
-                            <span>{this.props.data.password__errorMessage}</span>
+                            <span>{data.password__errorMessage}</span>
                         </div>
 
                         <div className={'password-repeat'}>
@@ -42,7 +47,7 @@ export class SignUpForm extends Component {
                             >
                                 Повторите пароль
                             </InputText>
-                            <span>{this.props.data.passwordRepeat__errorMessage}</span>
+                            <span>{data.passwordRepeat__errorMessage}</span>
                         </div>
 
                         <div className={'submit'}>
