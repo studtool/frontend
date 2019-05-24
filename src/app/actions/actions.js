@@ -1,6 +1,6 @@
 import BaseActions from '../../../lib/baseActions.js';
 import {userSignUpBody, userSignInBody, successSignInBody} from './actionsBody.js';
-import format, {objectFormat} from './actionsFormatMethods.js';
+import format from './actionsFormatMethods.js';
 
 
 class Actions extends BaseActions {

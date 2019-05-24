@@ -5,8 +5,7 @@ import SignUp from './signUp.js';
 import SignUpFormStore from '../../store/formStores/signUpFormStore/signUpFormStore.js';
 import ActionCreator from '../../../../lib/actionCreator.js';
 import Header from '../../components/organisms/header/header.js';
-// console.log(UserStore);
-// console.log(SignUpFormStore);
+
 /**
  * Класс контроллер страницы регистрации
  */
@@ -42,7 +41,6 @@ export default class SignUpController extends Component {
      * @param {object} newState - новое состояние формы
      */
     onChange(newState) {
-        // console.log(newState);
         this.setState( () => {
             return newState;
         });

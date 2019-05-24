@@ -25,7 +25,7 @@ class SignUpFormStore extends BaseStore {
         return {
             'USER_SIGNUP': {
                 callback: (args) => {
-                    SignUpLogic.execLogic(args);
+                    SignUpLogic.signUp(args);
                 },
                 arguments: {
                     state: this.state,

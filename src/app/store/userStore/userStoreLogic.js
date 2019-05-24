@@ -18,13 +18,8 @@ class UserStoreLogic {
         }
     }
 
-    /**
-     * сделать функцию проверяющую наличие токена, его expireTime
-     * если есть токен проверить epxireTime, если он протух то сделать запрос с  таймаутом.
-     * если токена нет то неавторизован
-     */
 
-    // добавить проверки на наличие каких либо полей в localstorage
+    // TODO добавить проверки на наличие каких либо полей в localstorage
     async checkAuth({state} = {}) {
         if (!localStorage.getItem('sessionId')) {
             state.isLogedIn = false;
