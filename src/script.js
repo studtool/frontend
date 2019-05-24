@@ -1,4 +1,3 @@
-  
 import 'babel-polyfill';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -6,11 +5,16 @@ import React, { Suspense, lazy } from 'react';
 import ReactDOM from "react-dom";
 import Actions from './app/actions/actions.js';
 
+import UserStore from './app/store/userStore/userStore.js';
+import ActionCreator from '../lib/actionCreator.js';
 const Main = lazy(() => import('./app/pages/main/main.js'));
 const SignUpController = lazy(() => import('./app/pages/signUp/singUpController.js'));
 
 // инициализируем все actions
 Actions.initActions();
+ActionCreator.create({
+	action: 'CHECK_AUTH',
+});
 
 const App = () => (
 	<Router>

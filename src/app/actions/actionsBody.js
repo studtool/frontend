@@ -1,10 +1,18 @@
 export const userSignUpBody = {
-    'email': '',
-    'password': '',
-    'passwordRepeat': '',
+    email: '',
+    password: '',
+    passwordRepeat: '',
 };
 
 export const userSignInBody = {
-    'email': '',
-    'password': '',
+    email: '',
+    password: '',
+};
+
+export const successSignInBody = {
+    authToken: '',
+    expireTime: '',
+    refreshToken: '',
+    sessionId: '',
+    userId: '',
 };

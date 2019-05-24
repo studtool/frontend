@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import Header from '../../components/organisms/header/header';
 
 export default class Main extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
     }
 
     render() {
@@ -12,8 +13,13 @@ export default class Main extends Component {
                 <Header></Header>
                 <div className={'main'}>
                     <h1>{'Main'}</h1>
-                    {this.props.children}
                 </div>
+                <Link to='/signup'>
+                    <button>Sign up</button>
+                </Link>
+                <Link to='/signin'>
+                    <button>Sign in</button>
+                </Link>
             </>
         );
     }

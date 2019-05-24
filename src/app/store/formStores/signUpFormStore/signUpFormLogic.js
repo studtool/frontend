@@ -10,13 +10,15 @@ class SignUpLogic {
             try {
                 const signUpResult = await AuthModel.signUp(payload); // регистрируемся
                 try {
-                    // TODO сохранять все токены и id в indexDB
-                    // автоматически логиним пользователя
                     const signInResult = await AuthModel.signIn(signUpResult);
-                    // чтобы линтер не орал что я не использую signInResult
-                    console.log(signInResult);
+
+                    // TODO заменить на createBatch
                     ActionCreator.create({
                         action: 'SUCCESS_SIGNUP',
+                    });
+                    ActionCreator.create({
+                        action: 'SUCCESS_SIGNIN',
+                        actionData: signInResult,
                     });
                 } catch (error) {
                     state['signUp_errorMessage'] = 'у нас не получилось залогинить вас в систему';
@@ -32,7 +34,6 @@ class SignUpLogic {
                 } else if (error instanceof TypeError) {
                     state['signUp_errorMessage'] = 'возникли проблемы с сетью';
                 }
-
                 ActionCreator.create({
                     action: 'FAILED_SIGNUP',
                 });

@@ -3,7 +3,7 @@ import fetchModule from '../modules/fetchModule.js';
 export default class AuthModel {
     static async signUp(userData = {}) {
         try {
-            const response = await fetchModule.doPost({path: '/auth/profiles', body: userData});
+            const response = await fetchModule.doPost({path: '/public/auth/profiles', body: userData});
             if (response.status === 200) {
                 return userData;
             } else {
@@ -16,10 +16,34 @@ export default class AuthModel {
 
     static async signIn(userData = {}) {
         try {
-            const response = await fetchModule.doPost({path: '/auth/sessions', body: userData});
+            const response = await fetchModule.doPost({path: '/public/auth/sessions', body: userData});
             if (response.status === 200) {
-                return userData;
+                const responseData = await response.json();
+                // console.log(responseData);
+                return responseData;
             } else {
+                throw response.status;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async signOut(userData = {}) {
+        try {
+            const response = await fetchModule.doDelete({path: `/protected/auth/session/${userData.sessionId}`});
+            if (response.status !== 200) {
+                throw response.status;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async refreshSession(userData = {}) {
+        try {
+            const response = await fetchModule.doPatch({path: `/public/auth/session/${userData.sessionId}`});
+            if (response.status !== 200) {
                 throw response.status;
             }
         } catch (error) {

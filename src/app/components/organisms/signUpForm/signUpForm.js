@@ -3,8 +3,8 @@ import {Button} from '../../atoms/button/button.js';
 import {InputText} from '../../molecules/inputText/inputText.js';
 
 export class SignUpForm extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
     }
 
     render() {
@@ -12,7 +12,7 @@ export class SignUpForm extends Component {
         return (
             <>
                 <div className={'signup-form'} qa={qa}>
-                    <h1>{'SignUp'}</h1>  {/* TODO вынести в children */}
+                    <h1>{'SignUp'}</h1>
                     <form onSubmit={this.props.handleSubmit}>
                         <div className={'email'}>
                             <InputText

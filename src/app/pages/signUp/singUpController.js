@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import Bus from 'bus-graph';
+
 import SignUp from './signUp.js';
 import SignUpFormStore from '../../store/formStores/signUpFormStore/signUpFormStore.js';
-import Postman from '../../../modules/postman.js';
 import ActionCreator from '../../../../lib/actionCreator.js';
 import Header from '../../components/organisms/header/header.js';
-
+// console.log(UserStore);
+// console.log(SignUpFormStore);
 /**
  * Класс контроллер страницы регистрации
  */
@@ -18,8 +20,8 @@ export default class SignUpController extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSuccessSignUp = this.onSuccessSignUp.bind(this);
 
-        Postman.on('SignUpFormStore', 'SIGNUP_CONTROLLER__change_state', this.onChange);
-        Postman.on('SignUpFormStore', 'SIGNUP_CONTROLLER__redirect', this.onSuccessSignUp);
+        Bus.on('SIGNUP_CONTROLLER__change_state', this.onChange);
+        Bus.on('SIGNUP_CONTROLLER__redirect', this.onSuccessSignUp);
     }
 
     /**
