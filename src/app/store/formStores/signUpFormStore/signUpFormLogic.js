@@ -1,6 +1,7 @@
 import SignUpValidator from 'App/validators/signUpValidator.js';
 import AuthModel from '../../../../models/authModel.js';
 import ActionCreator from '../../../../../lib/actionCreator.js';
+import Actions from '../../../actions/actions.js';
 import {PasswordMatchError, EmailPatternError} from '../../../errors/inputValidationErrors.js';
 import {initialState} from './signUpFormStore.js';
 
@@ -14,16 +15,16 @@ class SignUpLogic {
 
                     // TODO заменить на createBatch
                     ActionCreator.create({
-                        action: 'SUCCESS_SIGNUP',
+                        action: Actions.SUCCESS_SIGNUP,
                     });
                     ActionCreator.create({
-                        action: 'SUCCESS_SIGNIN',
+                        action: Actions.SUCCESS_SIGNIN,
                         actionData: signInResult,
                     });
                 } catch (error) {
                     state['signUp_errorMessage'] = 'у нас не получилось залогинить вас в систему';
                     ActionCreator.create({
-                        action: 'FAILED_SIGNUP',
+                        action: Actions.FAILED_SIGNUP,
                     });
                 }
             } catch (error) {
@@ -35,12 +36,12 @@ class SignUpLogic {
                     state['signUp_errorMessage'] = 'возникли проблемы с сетью';
                 }
                 ActionCreator.create({
-                    action: 'FAILED_SIGNUP',
+                    action: Actions.FAILED_SIGNUP,
                 });
             }
         } else {
             ActionCreator.create({
-                action: 'INCORRECT_USER_INPUT_SIGNUP',
+                action: Actions.INCORRECT_USER_INPUT_SIGNUP,
             });
         }
     }

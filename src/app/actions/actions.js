@@ -1,34 +1,39 @@
-import BaseActions from '../../../lib/baseActions.js';
 import {userSignUpBody, userSignInBody, successSignInBody} from './actionsBody.js';
 import format from './actionsFormatMethods.js';
 
+const Actions = {
+    'USER_SIGNUP': {
+        name: 'USER_SIGNUP',
+        body: userSignUpBody,
+        formatMethod: format,
+    },
+    'USER_SIGNIN': {
+        name: 'USER_SIGNIN',
+        body: userSignInBody,
+        formatMethod: format,
+    },
+    'FAILED_SIGNUP': {
+        name: 'FAILED_SIGNUP',
+    },
+    'FAILED_SIGNIN': {
+        name: 'FAILED_SIGNIN',
+    },
+    'SUCCESS_SIGNIN': { // TODO добавить форматный метод
+        name: 'SUCCESS_SIGNIN',
+        body: successSignInBody,
+    },
+    'SUCCESS_SIGNUP': {
+        name: 'SUCCESS_SIGNUP',
+    },
+    'INCORRECT_USER_INPUT_SIGNUP': {
+        name: 'INCORRECT_USER_INPUT_SIGNUP',
+    },
+    'USER_SIGNOUT': {
+        name: 'USER_SIGNOUT',
+    },
+    'CHECK_AUTH': {
+        name: 'CHECK_AUTH',
+    },
+};
 
-class Actions extends BaseActions {
-    constructor() {
-        super();
-    }
-    // TODO придумать как раззделить события что все не было в одном объекте
-    allActions() {
-        return {
-            'USER_SIGNUP': {
-                body: userSignUpBody,
-                formatMethod: format,
-            },
-            'USER_SIGNIN': {
-                body: userSignInBody,
-                formatMethod: format,
-            },
-            'FAILED_SIGNUP': {},
-            'FAILED_SIGNIN': {},
-            'SUCCESS_SIGNIN': { // TODO добавить форматный метод
-                body: successSignInBody,
-            },
-            'SUCCESS_SIGNUP': {},
-            'INCORRECT_USER_INPUT_SIGNUP': {},
-            'USER_SIGNOUT': {},
-            'CHECK_AUTH': {},
-        };
-    }
-}
-
-export default new Actions;
+export default Actions;

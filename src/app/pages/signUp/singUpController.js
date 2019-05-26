@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Bus from 'bus-graph';
 
+import Actions from '../../actions/actions.js';
 import SignUp from './signUp.js';
 import SignUpFormStore from '../../store/formStores/signUpFormStore/signUpFormStore.js';
 import ActionCreator from '../../../../lib/actionCreator.js';
@@ -22,6 +23,11 @@ export default class SignUpController extends Component {
         Bus.on('SIGNUP_CONTROLLER__change_state', this.onChange);
         Bus.on('SIGNUP_CONTROLLER__redirect', this.onSuccessSignUp);
     }
+    /**
+     *  TODO когда происходит unmount компонента нужно вернуть стор в исходное состояние.
+     * иначе при повторном заходе на странцицу без перезагрузки на странице,к примеру,
+     * могут быть старые сообщения об ошибках
+     */
 
     /**
      * обработка сабмита формы регистрации
@@ -30,7 +36,7 @@ export default class SignUpController extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const rawData = {
-            action: 'USER_SIGNUP',
+            action: Actions.USER_SIGNUP,
             actionData: Array.from(event.target.elements),
         };
         ActionCreator.create(rawData);
