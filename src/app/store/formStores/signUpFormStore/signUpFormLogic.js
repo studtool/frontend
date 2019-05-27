@@ -22,18 +22,18 @@ class SignUpLogic {
                         actionData: signInResult,
                     });
                 } catch (error) {
-                    state['signUp_errorMessage'] = 'у нас не получилось залогинить вас в систему';
+                    state.signUp_errorMessage = 'у нас не получилось залогинить вас в систему';
                     ActionCreator.create({
                         action: Actions.FAILED_SIGNUP,
                     });
                 }
             } catch (error) {
                 if (error === 409) {
-                    state['signUp_errorMessage'] = 'такой пользователь уже существует';
+                    state.signUp_errorMessage = 'такой пользователь уже существует';
                 } else if (error === 422) {
-                    state['signUp_errorMessage'] = 'некорректные данные для регистрации';
+                    state.signUp_errorMessage = 'некорректные данные для регистрации';
                 } else if (error instanceof TypeError) {
-                    state['signUp_errorMessage'] = 'возникли проблемы с сетью';
+                    state.signUp_errorMessage = 'возникли проблемы с сетью';
                 }
                 ActionCreator.create({
                     action: Actions.FAILED_SIGNUP,
@@ -60,10 +60,10 @@ class SignUpLogic {
                 passedValidation = false;
 
                 if (error instanceof PasswordMatchError) {
-                    stateTemplate['password__errorMessage'] = 'пароли не совпадают';
-                    stateTemplate['passwordRepeat__errorMessage'] = 'пароли не совпадают';
+                    stateTemplate.password__errorMessage = 'пароли не совпадают';
+                    stateTemplate.passwordRepeat__errorMessage = 'пароли не совпадают';
                 } else if (error instanceof EmailPatternError) {
-                    stateTemplate['email__errorMessage'] = 'неверный email';
+                    stateTemplate.email__errorMessage = 'неверный email';
                 }
             }
         });

@@ -13,6 +13,7 @@ import ActionCreator from '../lib/actionCreator.js';
 Sux.setObserver(Bus);
 const Main = lazy(() => import('./app/pages/main/main.js'));
 const SignUpController = lazy(() => import('./app/pages/signUp/singUpController.js'));
+const SignInController = lazy(() => import('./app/pages/signIn/signInController.js'));
 
 ActionCreator.create({
 	action: Actions.CHECK_AUTH,
@@ -25,6 +26,7 @@ const App = () => (
 			<Switch>
 				<Route exact path="/" component={Main}/>
 				<Route exact path="/signup" component={SignUpController} />
+				<Route exact path="/signin" component={SignInController} />
 			</Switch>
 		</Suspense>
 	</Router>

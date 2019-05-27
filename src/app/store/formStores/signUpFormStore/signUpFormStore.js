@@ -33,7 +33,6 @@ class SignUpFormStore extends BaseStore {
             },
             'INCORRECT_USER_INPUT_SIGNUP': {
                 arguments: {
-                    from: 'SignUpFormStore',
                     event: 'SIGNUP_CONTROLLER__change_state',
                     data: this.state,
                 },
@@ -41,7 +40,6 @@ class SignUpFormStore extends BaseStore {
 
             'FAILED_SIGNUP': {
                 arguments: {
-                    from: 'SignUpFormStore',
                     event: 'SIGNUP_CONTROLLER__change_state',
                     data: this.state,
                 },
@@ -49,7 +47,6 @@ class SignUpFormStore extends BaseStore {
 
             'SUCCESS_SIGNUP': {
                 arguments: {
-                    from: 'SignUpFormStore',
                     event: 'SIGNUP_CONTROLLER__redirect',
                 },
             },

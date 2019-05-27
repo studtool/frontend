@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from '../../atoms/button/button.js';
 import {InputText} from '../../molecules/inputText/inputText.js';
 
-export class SignUpForm extends Component {
+export default class SignInForm extends Component {
     constructor() {
         super();
     }
@@ -21,7 +21,6 @@ export class SignUpForm extends Component {
                             >
                                 Email
                             </InputText>
-                            <span>{this.props.data.email__errorMessage}</span>
                         </div>
 
                         <div className={'password'}>
@@ -31,21 +30,13 @@ export class SignUpForm extends Component {
                             >
                                 Пароль
                             </InputText>
-                            <span>{this.props.data.password__errorMessage}</span>
                         </div>
-
-                        <div className={'password-repeat'}>
-                            <InputText
-                                name="passwordRepeat"
-                                type="password"
-                            >
-                                Повторите пароль
-                            </InputText>
-                            <span>{this.props.data.passwordRepeat__errorMessage}</span>
+                        <div>
+                            <span>{this.props.data.signIn__errorMessage}</span>
                         </div>
 
                         <div className={'submit'}>
-                            <Button type="submit" value="SignUp">SignUp</Button>
+                            <Button type="submit" value="SignIn">SignIn</Button>
                         </div>
                     </form>
                 </div>

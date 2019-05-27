@@ -29,9 +29,9 @@ class UserStoreLogic {
             if (expireTime > now) {
                 state.isLogedIn = true;
             } else {
-                const sessinId = localStorage.getItem('sessionId');
+                const sessionId = localStorage.getItem('sessionId');
                 try {
-                    await AuthModel.refreshSession({sessinId});
+                    await AuthModel.refreshSession({sessionId});
                 } catch (error) {
                     console.log('error in refresh session', error);
                 }

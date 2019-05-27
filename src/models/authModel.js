@@ -19,7 +19,6 @@ export default class AuthModel {
             const response = await fetchModule.doPost({path: '/public/auth/sessions', body: userData});
             if (response.status === 200) {
                 const responseData = await response.json();
-                // console.log(responseData);
                 return responseData;
             } else {
                 throw response.status;
@@ -31,6 +30,7 @@ export default class AuthModel {
 
     static async signOut(userData = {}) {
         try {
+            console.log('123');
             const response = await fetchModule.doDelete({path: `/protected/auth/session/${userData.sessionId}`});
             if (response.status !== 200) {
                 throw response.status;

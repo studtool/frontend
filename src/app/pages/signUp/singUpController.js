@@ -35,11 +35,10 @@ export default class SignUpController extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        const rawData = {
+        ActionCreator.create({
             action: Actions.USER_SIGNUP,
             actionData: Array.from(event.target.elements),
-        };
-        ActionCreator.create(rawData);
+        });
     }
 
     /**
