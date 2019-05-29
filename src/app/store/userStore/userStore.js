@@ -1,15 +1,7 @@
 import BaseStore from '../../../../lib/baseStore.js';
 import UserStoreLogic from './userStoreLogic.js';
 
-/**
- * сделать функцию проверяющую наличие токена, его expireTime
- * если есть токен проверить epxireTime, если он протух то сделать запрос с  таймаутом.
- * если токена нет то неавторизован
- */
 
- /**
-  * TODO подумать как не пересчитывать авторизацию после вызова супер
-  */
 export const initialState = {
     isLogedIn: false,
 };
@@ -29,10 +21,16 @@ class UserStore extends BaseStore {
                 callback: (args) => {
                     UserStoreLogic.saveTokens(args);
                 },
+                arguments: {
+                    state: this.state,
+                },
             },
             'USER_SIGNOUT': {
                 callback: (args) => {
                     UserStoreLogic.signOut(args);
+                },
+                arguments: {
+                    state: this.state,
                 },
             },
             'CHECK_AUTH': {

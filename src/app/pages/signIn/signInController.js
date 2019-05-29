@@ -41,7 +41,6 @@ export default class SignInController extends Component {
     }
 
     render() {
-        // console.log(SignIn);
         return (
             <div>
                 <Header></Header>

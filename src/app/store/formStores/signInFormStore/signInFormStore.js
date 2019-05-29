@@ -23,14 +23,16 @@ class SignInFormStore extends BaseStore {
 
             'SUCCESS_SIGNIN': {
                 arguments: {
-                    event: 'SIGNIN_CONTROLLER__redirect',
+                    event: 'SIGNIN__redirect',
                 },
             },
 
             'FAILED_SIGNIN': {
+                callback: (args) => {
+                    this.deliverState(args);
+                },
                 arguments: {
-                    event: 'SIGNIN_CONTROLLER__change_state',
-                    data: this.state,
+                    state: this.state,
                 },
             },
         };

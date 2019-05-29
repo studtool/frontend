@@ -31,6 +31,9 @@ const Actions = {
     'USER_SIGNOUT': {
         name: 'USER_SIGNOUT',
     },
+    'SUCCESS_SIGNOUT': {
+        name: 'SUCCESS_SIGNOUT',
+    },
     'CHECK_AUTH': {
         name: 'CHECK_AUTH',
     },

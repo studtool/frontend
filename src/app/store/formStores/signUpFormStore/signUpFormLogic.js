@@ -15,11 +15,11 @@ class SignUpLogic {
 
                     // TODO заменить на createBatch
                     ActionCreator.create({
-                        action: Actions.SUCCESS_SIGNUP,
-                    });
-                    ActionCreator.create({
                         action: Actions.SUCCESS_SIGNIN,
                         actionData: signInResult,
+                    });
+                    ActionCreator.create({
+                        action: Actions.SUCCESS_SIGNUP,
                     });
                 } catch (error) {
                     state.signUp_errorMessage = 'у нас не получилось залогинить вас в систему';

@@ -11,7 +11,8 @@ class SignInFormLogic {
                 actionData: signInResult,
             });
         } catch (error) {
-            if (error === 401) {
+            console.log(error);
+            if (error === 404) {
                 state.signIn__errorMessage = 'Пользователь не найден';
             } else if (error instanceof TypeError) {
                 state.signIn__errorMessage = 'Возникли проблемы с сетью';

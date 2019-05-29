@@ -30,8 +30,12 @@ export default class AuthModel {
 
     static async signOut(userData = {}) {
         try {
-            console.log('123');
-            const response = await fetchModule.doDelete({path: `/protected/auth/session/${userData.sessionId}`});
+            const response = await fetchModule.doDelete({
+                path: `/protected/auth/sessions/${userData.sessionId}`,
+                headers: {
+                    'Authorization': 'Bearer ' + userData.authToken,
+                },
+            });
             if (response.status !== 200) {
                 throw response.status;
             }
@@ -42,7 +46,12 @@ export default class AuthModel {
 
     static async refreshSession(userData = {}) {
         try {
-            const response = await fetchModule.doPatch({path: `/public/auth/session/${userData.sessionId}`});
+            const response = await fetchModule.doPatch({
+                path: `/public/auth/sessions/${userData.sessionId}`,
+                headers: {
+                    'X-Refresh-Token': `${userData.refreshToken}`,
+                },
+            });
             if (response.status !== 200) {
                 throw response.status;
             }

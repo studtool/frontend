@@ -1,10 +1,32 @@
 import React, {Component} from 'react';
+import ActionCreator from '../../../../../lib/actionCreator.js';
+import Actions from '../../../actions/actions.js';
+
 import {Button} from '../../atoms/button/button.js';
 import {InputText} from '../../molecules/inputText/inputText.js';
 
+import SignUpFormStore from '../../../store/formStores/signUpFormStore/signUpFormStore.js';
+
 export class SignUpForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.state = SignUpFormStore.getState();
+
+        SignUpFormStore.subscribeToRecieveState(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillUnmount() {
+        SignUpFormStore.unsubscribe(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        ActionCreator.create({
+            action: Actions.USER_SIGNUP,
+            actionData: Array.from(event.target.elements),
+        });
     }
 
     render() {
@@ -12,7 +34,7 @@ export class SignUpForm extends Component {
         return (
             <>
                 <div className={'signup-form'} qa={qa}>
-                    <form onSubmit={this.props.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
                         <div className={'email'}>
                             <InputText
                                 qa="email-input"
@@ -21,7 +43,7 @@ export class SignUpForm extends Component {
                             >
                                 Email
                             </InputText>
-                            <span>{this.props.data.email__errorMessage}</span>
+                            <span>{this.state.email__errorMessage}</span>
                         </div>
 
                         <div className={'password'}>
@@ -31,7 +53,7 @@ export class SignUpForm extends Component {
                             >
                                 Пароль
                             </InputText>
-                            <span>{this.props.data.password__errorMessage}</span>
+                            <span>{this.state.password__errorMessage}</span>
                         </div>
 
                         <div className={'password-repeat'}>
@@ -41,7 +63,7 @@ export class SignUpForm extends Component {
                             >
                                 Повторите пароль
                             </InputText>
-                            <span>{this.props.data.passwordRepeat__errorMessage}</span>
+                            <span>{this.state.passwordRepeat__errorMessage}</span>
                         </div>
 
                         <div className={'submit'}>

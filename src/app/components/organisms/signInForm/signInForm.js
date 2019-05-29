@@ -1,10 +1,32 @@
 import React, {Component} from 'react';
+import ActionCreator from '../../../../../lib/actionCreator.js';
+import Actions from '../../../actions/actions.js';
+
+import SignInFormStore from '../../../store/formStores/signInFormStore/signInFormStore.js';
+
 import {Button} from '../../atoms/button/button.js';
 import {InputText} from '../../molecules/inputText/inputText.js';
 
 export default class SignInForm extends Component {
     constructor() {
         super();
+        this.state = SignInFormStore.getState();
+
+        SignInFormStore.subscribeToRecieveState(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillUnmount() {
+        SignInFormStore.unsubscribe(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        ActionCreator.create({
+            action: Actions.USER_SIGNIN,
+            actionData: Array.from(event.target.elements),
+        });
     }
 
     render() {
@@ -12,7 +34,7 @@ export default class SignInForm extends Component {
         return (
             <>
                 <div className={'signup-form'} qa={qa}>
-                    <form onSubmit={this.props.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
                         <div className={'email'}>
                             <InputText
                                 qa="email-input"
@@ -32,7 +54,7 @@ export default class SignInForm extends Component {
                             </InputText>
                         </div>
                         <div>
-                            <span>{this.props.data.signIn__errorMessage}</span>
+                            <span>{this.state.signIn__errorMessage}</span>
                         </div>
 
                         <div className={'submit'}>

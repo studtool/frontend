@@ -32,22 +32,26 @@ class SignUpFormStore extends BaseStore {
                 },
             },
             'INCORRECT_USER_INPUT_SIGNUP': {
+                callback: (args) => {
+                    this.deliverState(args);
+                },
                 arguments: {
-                    event: 'SIGNUP_CONTROLLER__change_state',
-                    data: this.state,
+                    state: this.state,
                 },
             },
 
             'FAILED_SIGNUP': {
+                callback: (args) => {
+                    this.deliverState(args);
+                },
                 arguments: {
-                    event: 'SIGNUP_CONTROLLER__change_state',
-                    data: this.state,
+                    state: this.state,
                 },
             },
 
             'SUCCESS_SIGNUP': {
                 arguments: {
-                    event: 'SIGNUP_CONTROLLER__redirect',
+                    event: 'SIGNUP__redirect',
                 },
             },
         };
