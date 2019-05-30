@@ -1,5 +1,5 @@
 import React from 'react';
-import {FileSystemElement} from './FileSystemElement';
+import {FileSystemElement} from './fileSystemElement';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
