@@ -3,47 +3,53 @@
 exports[`signUp Form test 1`] = `
 Array [
   <div>
-    <button
-      onClick={[Function]}
-    >
-      +
-    </button>
     <div>
-      <div
-        contentEditable={true}
-        onKeyDown={[Function]}
+      <button
+        onClick={[Function]}
       >
-        hi
+        +
+      </button>
+      <div>
+        <div
+          contentEditable={true}
+          onKeyDown={[Function]}
+        >
+          hi
+        </div>
       </div>
     </div>
   </div>,
   <div>
-    <button
-      onClick={[Function]}
-    >
-      +
-    </button>
     <div>
-      <div
-        contentEditable={true}
-        onKeyDown={[Function]}
+      <button
+        onClick={[Function]}
       >
-        lol
+        +
+      </button>
+      <div>
+        <div
+          contentEditable={true}
+          onKeyDown={[Function]}
+        >
+          lol
+        </div>
       </div>
     </div>
   </div>,
   <div>
-    <button
-      onClick={[Function]}
-    >
-      +
-    </button>
     <div>
-      <div
-        contentEditable={true}
-        onKeyDown={[Function]}
+      <button
+        onClick={[Function]}
       >
-        kek
+        +
+      </button>
+      <div>
+        <div
+          contentEditable={true}
+          onKeyDown={[Function]}
+        >
+          kek
+        </div>
       </div>
     </div>
   </div>,

@@ -17,16 +17,14 @@ export class FileSystemViewer extends Component {
 
 
         const folderItems = (data) => {
-            console.log("data: ",data);
-            
             const foldersRes = data.map((folders) => 
-                <>
+                <div key={folders.folder + "__key"}>
                     <PlusContainer>
                         <FileSystemContainer>
                             {folders.folder}
                         </FileSystemContainer>
                     </PlusContainer>
-                </>
+                </div >
             );
             return foldersRes;
         }
