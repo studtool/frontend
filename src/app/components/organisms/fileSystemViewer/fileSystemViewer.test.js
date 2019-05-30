@@ -1,5 +1,5 @@
 import React from 'react';
-import {FileSystemViewer} from './fileSystemViewer';
+import {FileSystemViewer} from './fileSystemViewer.js';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
