@@ -1,4 +1,4 @@
-import SignUpValidator from 'App/validators/signUpValidator.js';
+import SignUpValidator from '../../../validators/signUpValidator.js';
 import AuthModel from '../../../../models/authModel.js';
 import ActionCreator from '../../../../../lib/actionCreator.js';
 import Actions from '../../../actions/actions.js';

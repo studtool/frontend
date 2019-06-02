@@ -38,7 +38,7 @@ export class SignUpForm extends Component {
 
         return (
             <>
-                <div className={'signup-form'} qa={qa}>
+                <div className={'signup-form'} qa={`${qa}`}>
                     <form onSubmit={this.handleSubmit}>
                         <div className={'email'}>
                             <InputText
