@@ -4,6 +4,9 @@ node_js:
 
 jobs:
   include:
+    - stage: tests
+      script:
+        - npm test
     - stage: build image
       services:
         - docker
