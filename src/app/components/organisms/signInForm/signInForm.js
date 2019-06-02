@@ -2,43 +2,38 @@ import React, {Component} from 'react';
 import ActionCreator from '../../../../../lib/actionCreator.js';
 import Actions from '../../../actions/actions.js';
 
+import SignInFormStore from '../../../store/formStores/signInFormStore/signInFormStore.js';
+
 import {Button} from '../../atoms/button/button.js';
 import {InputText} from '../../molecules/inputText/inputText.js';
 
-import SignUpFormStore from '../../../store/formStores/signUpFormStore/signUpFormStore.js';
+export default class SignInForm extends Component {
+    constructor() {
+        super();
+        this.state = SignInFormStore.getState();
 
-export class SignUpForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = SignUpFormStore.getState();
-
-        SignUpFormStore.subscribeToRecieveState(this);
+        SignInFormStore.subscribeToRecieveState(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillUnmount() {
-        SignUpFormStore.unsubscribe(this);
+        SignInFormStore.unsubscribe(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         ActionCreator.create({
-            action: Actions.USER_SIGNUP,
+            action: Actions.USER_SIGNIN,
             actionData: Array.from(event.target.elements),
         });
     }
 
     render() {
-        const {
-            qa = false,
-            data = {},
-            handleSubmit = null,
-        } = this.props;
-
+        const qa = this.props.qa ? this.props.qa : 'no-qa';
         return (
             <>
-                <div className={'signup-form'} qa={`${qa}`}>
+                <div className={'signup-form'} qa={qa}>
                     <form onSubmit={this.handleSubmit}>
                         <div className={'email'}>
                             <InputText
@@ -48,7 +43,6 @@ export class SignUpForm extends Component {
                             >
                                 Email
                             </InputText>
-                            <span>{this.state.email__errorMessage}</span>
                         </div>
 
                         <div className={'password'}>
@@ -58,21 +52,13 @@ export class SignUpForm extends Component {
                             >
                                 Пароль
                             </InputText>
-                            <span>{this.state.password__errorMessage}</span>
                         </div>
-
-                        <div className={'password-repeat'}>
-                            <InputText
-                                name="passwordRepeat"
-                                type="password"
-                            >
-                                Повторите пароль
-                            </InputText>
-                            <span>{this.state.passwordRepeat__errorMessage}</span>
+                        <div>
+                            <span>{this.state.signIn__errorMessage}</span>
                         </div>
 
                         <div className={'submit'}>
-                            <Button type="submit" value="SignUp">SignUp</Button>
+                            <Button type="submit" value="SignIn">SignIn</Button>
                         </div>
                     </form>
                 </div>

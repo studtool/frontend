@@ -4,16 +4,20 @@ import {InputTextField} from '../../atoms/inputTextField/inputTextField.js';
 
 export class InputText extends Component {
     render() {
+        const {
+            children,
+            ...other
+        } = this.props;
+
         const qa = this.props.qa ? this.props.qa : 'no-qa';
-        const inputProps = ( ( {children, ...others} ) => ({...others}))(this.props);
         return (
             <>
                 <div qa={qa}>
                     <Label>
-                        {this.props.children}
+                        {children}
 
                         <InputTextField
-                            {...inputProps}
+                            {...other}
                         />
                     </Label>
                 </div>

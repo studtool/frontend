@@ -5,8 +5,8 @@
  */
 function makeArrayOfObjects(data) {
     const result= [];
-    for (key in data) {
-        const b = new {};
+    for (const key in data) {
+        const b = new Object;
         b[key] = data[key];
         result.push(b);
     }
@@ -24,6 +24,7 @@ function format(format, data) {
     if (data.constructor.name === 'Object') {
         data = makeArrayOfObjects(data);
     }
+    // console.log(data);
     const undepended = {...format};
     const formatedData = data.reduce((acc, val) => {
         if (val.name in format) {
@@ -31,9 +32,8 @@ function format(format, data) {
         }
         return acc;
     }, undepended);
-
+    // console.log(formatedData);
     return formatedData;
 }
-
 
 export default format;

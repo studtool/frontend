@@ -7,6 +7,15 @@ exports[`Header test 1`] = `
   <h1>
     Header
   </h1>
-  test
+  <div>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button>
+        Home
+      </button>
+    </a>
+  </div>
 </div>
 `;

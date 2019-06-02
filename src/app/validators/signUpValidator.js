@@ -1,4 +1,4 @@
-import {PasswordMatchError, EmailPatternError} from '../Errors/inputValidationErrors.js';
+import {PasswordMatchError, EmailPatternError} from '../errors/inputValidationErrors.js';
 
 class SignUpValidator {
     constructor() {

@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Bus from 'bus-graph';
 
-import {SignUpForm} from '../../components/organisms/signUpForm/signUpForm';
+import SignInForm from '../../components/organisms/signInForm/signInForm.js';
 import Header from '../../components/organisms/header/header.js';
 
 
-export default class SignUp extends React.Component {
+export default class SignIn extends Component {
     constructor(props) {
         super(props);
+
         this.onSuccessSignUp = this.onSuccessSignUp.bind(this);
-        Bus.on('SIGNUP__redirect', this.onSuccessSignUp);
+        Bus.on('SIGNIN__redirect', this.onSuccessSignUp);
     }
 
     onSuccessSignUp() {
@@ -21,7 +22,7 @@ export default class SignUp extends React.Component {
             <div>
                 <Header></Header>
                 <h1>SignUp Page</h1>
-                <SignUpForm/>
+                <SignInForm/>
             </div>
         );
     }

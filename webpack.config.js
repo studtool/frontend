@@ -19,7 +19,7 @@ module.exports = {
 		alias: {
 			App: path.resolve(__dirname, 'src/app'),
 			Container: path.resolve(__dirname, 'src/app/components/container'),
-			Modules: path.resolve(__dirname, 'src/modules')
+			Modules: path.resolve(__dirname, 'src/modules'),
 		  }
 	},
 	module: {
@@ -31,11 +31,7 @@ module.exports = {
 			{
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file?name=public/fonts/[name].[ext]'
-            },
-			{
-				test: /\.pug$/,
-				use: 'pug-loader'
-			},
+      },
 			{
 				test: /\.ts$/,
 				exclude: /node_modules/,

@@ -3,11 +3,8 @@
 exports[`signUp Form test 1`] = `
 <div
   className="signup-form"
+  qa="false"
 >
-  <h1>
-    SignUp
-  </h1>
-    
   <form
     onSubmit={[Function]}
   >
