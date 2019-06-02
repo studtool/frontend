@@ -30,7 +30,12 @@ export class SignUpForm extends Component {
     }
 
     render() {
-        const qa = this.props.qa ? this.props.qa : 'no-qa';
+        const {
+            qa = false,
+            data = {},
+            handleSubmit = null,
+        } = this.props;
+
         return (
             <>
                 <div className={'signup-form'} qa={qa}>

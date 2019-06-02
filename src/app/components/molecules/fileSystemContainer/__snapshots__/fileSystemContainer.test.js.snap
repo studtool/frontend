@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`file System Container test 1`] = `
+<div>
+  <div
+    contentEditable={true}
+    onKeyDown={[Function]}
+  />
+</div>
+`;

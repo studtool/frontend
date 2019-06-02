@@ -3,7 +3,6 @@
 exports[`signUp Form test 1`] = `
 <div
   className="signup-form"
-  qa="no-qa"
 >
   <h1>
     SignUp

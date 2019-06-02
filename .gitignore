@@ -63,6 +63,8 @@ typings/
 
 .idea
 
+.npmrc
+
 dist/
 
 .DS_Store
