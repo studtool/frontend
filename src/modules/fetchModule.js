@@ -1,4 +1,4 @@
-const serverUrl = 'http://80.252.155.65:8000/api/v0';
+const serverUrl = 'http://94.29.74.65:8000/api/v0';
 
 export default class fetchModule {
     static _ajax({method = 'GET', path = '/', body, headers} = {}) {

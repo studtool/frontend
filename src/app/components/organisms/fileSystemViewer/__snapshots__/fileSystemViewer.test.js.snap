@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`signUp Form test 1`] = `
+Array [
+  <div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+      <div>
+        <div
+          contentEditable={true}
+          onKeyDown={[Function]}
+        >
+          hi
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+      <div>
+        <div
+          contentEditable={true}
+          onKeyDown={[Function]}
+        >
+          lol
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div>
+    <div>
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+      <div>
+        <div
+          contentEditable={true}
+          onKeyDown={[Function]}
+        >
+          kek
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

@@ -1,42 +1,47 @@
-import SignUpValidator from 'App/validators/signUpValidator.js';
+import SignUpValidator from '../../../validators/signUpValidator.js';
 import AuthModel from '../../../../models/authModel.js';
-import ActionCreator from '../../../actionCreator/actionCreator.js';
-import {PasswordMatchError, EmailPatternError} from '../../../Errors/inputValidationErrors.js';
+import ActionCreator from '../../../../../lib/actionCreator.js';
+import Actions from '../../../actions/actions.js';
+import {PasswordMatchError, EmailPatternError} from '../../../errors/inputValidationErrors.js';
 import {initialState} from './signUpFormStore.js';
 
 class SignUpLogic {
-    async execLogic(payload, state) {
+    async signUp({payload, state} = {}) {
         if (this.validate(payload, state)) {
             try {
                 const signUpResult = await AuthModel.signUp(payload); // регистрируемся
                 try {
-                    // TODO сохранять все токены и id в indexDB
-                    // автоматически логиним пользователя
                     const signInResult = await AuthModel.signIn(signUpResult);
-                    // чтобы линтер не орал что я не использую signInResult
-                    console.log(signInResult);
+
+                    // TODO заменить на createBatch
                     ActionCreator.create({
-                        actionName: 'SUCCESS_SIGNUP',
+                        action: Actions.SUCCESS_SIGNIN,
+                        actionData: signInResult,
+                    });
+                    ActionCreator.create({
+                        action: Actions.SUCCESS_SIGNUP,
                     });
                 } catch (error) {
-                    state['signUp_errorMessage'] = 'у нас не получилось залогинить вас в систему';
+                    state.signUp_errorMessage = 'у нас не получилось залогинить вас в систему';
+                    ActionCreator.create({
+                        action: Actions.FAILED_SIGNUP,
+                    });
                 }
             } catch (error) {
                 if (error === 409) {
-                    state['signUp_errorMessage'] = 'такой пользователь уже существует';
+                    state.signUp_errorMessage = 'такой пользователь уже существует';
                 } else if (error === 422) {
-                    state['signUp_errorMessage'] = 'некорректные данные для регистрации';
+                    state.signUp_errorMessage = 'некорректные данные для регистрации';
                 } else if (error instanceof TypeError) {
-                    state['signUp_errorMessage'] = 'возникли проблемы с сетью';
+                    state.signUp_errorMessage = 'возникли проблемы с сетью';
                 }
-
                 ActionCreator.create({
-                    actionName: 'FAILED_SIGNUP',
+                    action: Actions.FAILED_SIGNUP,
                 });
             }
         } else {
             ActionCreator.create({
-                actionName: 'INCORRECT_USER_INPUT_SIGNUP',
+                action: Actions.INCORRECT_USER_INPUT_SIGNUP,
             });
         }
     }
@@ -55,10 +60,10 @@ class SignUpLogic {
                 passedValidation = false;
 
                 if (error instanceof PasswordMatchError) {
-                    stateTemplate['password__errorMessage'] = 'пароли не совпадают';
-                    stateTemplate['passwordRepeat__errorMessage'] = 'пароли не совпадают';
+                    stateTemplate.password__errorMessage = 'пароли не совпадают';
+                    stateTemplate.passwordRepeat__errorMessage = 'пароли не совпадают';
                 } else if (error instanceof EmailPatternError) {
-                    stateTemplate['email__errorMessage'] = 'неверный email';
+                    stateTemplate.email__errorMessage = 'неверный email';
                 }
             }
         });

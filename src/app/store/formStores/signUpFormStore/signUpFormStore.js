@@ -1,8 +1,5 @@
-import Postman from 'Modules/postman';
-import {Store} from 'App/store/store';
-import SignUpLogic from './signUpFormLogic';
-import {sux} from 'App/actionCreator/coreMessageTypes.js';
-
+import BaseStore from '../../../../../lib/baseStore.js';
+import SignUpLogic from './signUpFormLogic.js';
 /**
  * начальное состояние стора при его создание, так же служит пустым шаблоном состояния стора.
  * данный шаблон используется в логике стора
@@ -14,47 +11,50 @@ export const initialState = {
     'signUp__errorMessage': '',
 };
 
-/**
- *
- */
-class SignUpFormStore extends Store {
+
+class SignUpFormStore extends BaseStore {
     constructor() {
-        super();
-        this.state = {...initialState}; // независимая копия объекта
-        this.handle = this.handle.bind(this);
-        this.getState = this.getState.bind(this);
+        super(initialState);
     }
 
     /**
-     *
-     * @param {*} action
-     * @param {*} payload
+     * События на которые реагирует store
+     * @return {object}
      */
-    handle(action, payload) {
-        switch (action) {
-        case 'USER_SIGNUP':
-            SignUpLogic.execLogic(payload, this.state);
-            break;
-            /**
-             * следующие два события можно объединить в одно,
-             * но мне почему-то кажется, что ошибки, связанные с пользовательским вводом
-             * и с работой с базой и сетью, лучше разнести в разные события
-             */
-        case 'INCORRECT_USER_INPUT_SIGNUP':
-            Postman.emit(sux.SignUpFormStore, 'SIGNUP_CONTROLLER__change_state', this.state);
-            break;
+    getHandledActions() {
+        return {
+            'USER_SIGNUP': {
+                callback: (args) => {
+                    SignUpLogic.signUp(args);
+                },
+                arguments: {
+                    state: this.state,
+                },
+            },
+            'INCORRECT_USER_INPUT_SIGNUP': {
+                callback: (args) => {
+                    this.deliverState(args);
+                },
+                arguments: {
+                    state: this.state,
+                },
+            },
 
-        case 'FAILED_SIGNUP':
-            Postman.emit(sux.SignUpFormStore, 'SIGNUP_CONTROLLER__change_state', this.state);
-            break;
-        case 'SUCCESS_SIGNUP':
-            Postman.emit(sux.SignUpFormStore, 'SIGNUP_CONTROLLER__redirect');
-            break;
-        }
-    }
+            'FAILED_SIGNUP': {
+                callback: (args) => {
+                    this.deliverState(args);
+                },
+                arguments: {
+                    state: this.state,
+                },
+            },
 
-    getState() {
-        return this.states;
+            'SUCCESS_SIGNUP': {
+                arguments: {
+                    event: 'SIGNUP__redirect',
+                },
+            },
+        };
     }
 }
 
